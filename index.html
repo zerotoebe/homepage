@@ -3,121 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주식회사 제로투비 (ZEROTOBE)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>주식회사 제로투비 (ZEROTOBE) | Smart Logistics IT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        :root { --main-blue: #002c5f; --sub-blue: #004a99; --accent: #00d2ff; }
-        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; color: #333; background: #f0f2f5; line-height: 1.6; }
+        :root {
+            --primary: #1e2022;        /* 중후한 차콜 블랙 */
+            --secondary: #2c2e30;
+            --accent: #c5a059;         /* 하이엔드 샌드 골드 */
+            --point: #d4af37;          /* 클래식 골드 */
+            --sub-point: #a8a29e;      /* 웜 그레이 */
+            --text-main: #2d2d2d;
+            --text-sub: #6b7280;
+            --white: #ffffff;
+            --gray-light: #f4f4f2;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', 'Noto Sans KR', sans-serif; 
+            color: var(--text-main); 
+            line-height: 1.7; 
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 90px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 8%; z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .logo { 
+            font-size: 1.8rem; font-weight: 800; color: var(--primary); 
+            letter-spacing: -1px; display: flex; align-items: center;
+        }
+        .logo span { color: var(--accent); margin-left: 2px; }
+        .menu a {
+            text-decoration: none; color: var(--text-main);
+            margin-left: 40px; font-weight: 500; font-size: 0.95rem;
+            transition: var(--transition); position: relative;
+        }
+        .menu a:hover { color: var(--accent); }
+        .menu a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--accent);
+            transition: var(--transition);
+        }
+        .menu a:hover::after { width: 100%; }
+
+        /* Hero Visual */
+.visual {
+    height: 70vh; /* 100vh에서 70vh로 변경 (화면 높이의 70%) */
+    min-height: 500px; /* 최소 높이도 700에서 500으로 하향 */
+    background: linear-gradient(135deg, rgba(30, 32, 34, 0.9) 0%, rgba(44, 46, 48, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover; 
+    background-position: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    color: var(--white); 
+    text-align: center;
+    padding: 0 20px;
+    padding-top: 90px; /* 네비게이션 높이만큼 상단 여백 추가 */
+}
+        .visual h1 { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; 
+            margin-bottom: 20px; letter-spacing: -2px; line-height: 1.1;
+        }
+        .visual p { font-size: 1.25rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
+        .scroll-down {
+            position: absolute; bottom: 30px; animation: bounce 2s infinite;
+            font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;
+        }
+
+        /* Section Commons */
+        section { padding: 140px 0; }
+        .content { max-width: 1240px; margin: auto; padding: 0 30px; }
+        .sec-title { margin-bottom: 80px; }
+        .sec-title h2 { 
+            font-size: 2.8rem; color: var(--primary); margin-bottom: 20px; font-weight: 700;
+        }
+        .sec-title .bar { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
+
+        /* Profile Section */
+        .profile-section { background: var(--gray-light); }
+        .profile-grid {
+            display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center;
+        }
+        .profile-card {
+            background: var(--white); padding: 50px; border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-left: 10px solid var(--accent);
+        }
+        .profile-card h3 { font-size: 2.1rem; margin-bottom: 25px; color: var(--primary); line-height: 1.4; }
+        .profile-card p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 35px; word-break: keep-all; }
         
-        /* 네비게이션 */
-        nav { background: var(--main-blue); color: white; position: fixed; top: 0; width: 100%; height: 60px; 
-               display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-sizing: border-box; z-index: 1000; }
-        .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; }
-        .menu a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; opacity: 0.8; }
-        .menu a:hover { opacity: 1; color: var(--accent); }
+        .vision-container { display: grid; gap: 20px; }
+        .vision-item {
+            padding: 35px; border-radius: 24px; background: var(--white); 
+            border: 1px solid rgba(0,0,0,0.05); transition: var(--transition);
+        }
+        .vision-item:first-child { border-bottom: 4px solid var(--sub-point); }
+        .vision-item:last-child { background: var(--primary); color: var(--white); }
+        .vision-item strong { display: block; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
+        .vision-item:last-child strong { color: var(--accent); }
+        .vision-item p { font-size: 1.25rem; font-weight: 600; margin: 0; word-break: keep-all; }
 
-        /* 히어로 섹션 */
-        .hero { background: var(--main-blue); color: white; padding: 100px 20px 150px; text-align: center; }
-        .hero h1 { font-size: 3rem; margin: 0; }
-        .hero p { font-size: 1.2rem; opacity: 0.8; margin-top: 15px; font-weight: 300; }
-
-        .container { max-width: 1000px; margin: -80px auto 50px; padding: 0 20px; }
+        /* Business Section */
+        .biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+        .biz-item {
+            padding: 60px 45px; background: var(--white); border: 1px solid #e5e7eb;
+            border-radius: 28px; transition: var(--transition); position: relative; 
+            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .biz-item::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(to right, var(--accent), var(--sub-point));
+            opacity: 0.4;
+        }
+        .biz-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .biz-item::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0;
+            background: var(--primary); transition: var(--transition); z-index: 0;
+        }
+        .biz-item:hover::before { height: 100%; }
+        .biz-item:hover * { color: var(--white) !important; position: relative; z-index: 1; }
         
-        /* 섹션 공통 */
-        section { background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        h2 { color: var(--main-blue); font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; }
-        h2::before { content: ""; display: inline-block; width: 5px; height: 25px; background: var(--accent); margin-right: 15px; border-radius: 3px; }
+        .biz-item .icon { 
+            font-size: 3.5rem; font-weight: 800; margin-bottom: 30px; display: block;
+            color: var(--accent);
+            font-family: 'Inter'; line-height: 1;
+        }
+        .biz-item h3 { font-size: 1.55rem; margin-bottom: 20px; transition: var(--transition); font-weight: 700; }
+        .biz-item p { color: var(--text-sub); transition: var(--transition); font-size: 1rem; }
 
-        /* 비전 박스 (PDF 느낌) */
-        .vision-card { background: linear-gradient(135deg, var(--main-blue), var(--sub-blue)); color: white; padding: 40px; border-radius: 12px; text-align: center; margin-bottom: 30px; }
-        .vision-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--accent); }
-        .vision-card p { font-size: 1.1rem; opacity: 0.9; line-height: 1.8; }
+        /* System Architecture Section (New) */
+        .system-flow-card {
+            background: var(--white); padding: 40px; border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 50px;
+            border-top: 5px solid var(--accent);
+        }
+        .flow-grid {
+            display: flex; justify-content: space-around; align-items: center; 
+            text-align: center; gap: 20px; flex-wrap: wrap;
+        }
+        .flow-node h4 { font-size: 1.2rem; color: var(--primary); margin-bottom: 8px; }
+        .flow-node span { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+        .flow-arrow { color: var(--sub-point); font-weight: bold; font-size: 1.2rem; }
 
-        /* 서비스 카드 (포인트 아이콘 추가) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { padding: 30px; border: 1px solid #eee; border-radius: 12px; transition: 0.3s; position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--sub-blue); transform: translateY(-5px); }
-        .card .icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
-        .card h3 { color: var(--sub-blue); margin-top: 0; }
-        
-        /* 실적 리스트 (불렛 포인트) */
-        .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .ref-item { background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #ddd; font-size: 0.95rem; }
-        .ref-item strong { color: var(--main-blue); margin-right: 8px; }
+        /* Reference Section */
+        .ref-section { background: #1a1c1e; color: var(--white); }
+        .ref-section .sec-title h2 { color: var(--white); }
+        .ref-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
+        }
+        .ref-group {
+            background: rgba(255,255,255,0.03); border-radius: 24px; padding: 40px;
+            border: 1px solid rgba(255,255,255,0.08); height: 100%;
+            display: flex; flex-direction: column; transition: var(--transition);
+        }
+        .ref-group:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); border-color: var(--accent); }
+        .ref-header { margin-bottom: 30px; }
+        .badge {
+            display: inline-block; padding: 6px 16px; background: rgba(197, 160, 89, 0.15);
+            color: var(--accent); border: 1px solid var(--accent); border-radius: 50px; 
+            font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;
+        }
+        .ref-header h3 { font-size: 1.6rem; font-weight: 600; }
+        .ref-item-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .ref-item-list li {
+            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem; opacity: 0.7; display: flex; align-items: center;
+        }
+        .ref-item-list li::before {
+            content: '✓'; margin-right: 12px; color: var(--accent); font-weight: bold;
+        }
+        .ref-image-wrap {
+            width: 100%; height: 200px; border-radius: 20px; overflow: hidden;
+            filter: grayscale(100%); transition: var(--transition); opacity: 0.6;
+        }
+        .ref-group:hover .ref-image-wrap { filter: grayscale(0%); opacity: 1; }
+        .ref-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-        footer { background: #222; color: #aaa; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
-        .footer-content { max-width: 800px; margin: 0 auto; line-height: 2; }
+        /* Footer */
+        footer {
+            background: #111214; color: #71717a; padding: 100px 20px;
+            text-align: center; border-top: 1px solid rgba(255,255,255,0.03);
+        }
+        footer strong { color: var(--white); font-size: 1.6rem; display: block; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-info p { margin-bottom: 10px; font-size: 0.95rem; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        @media (max-width: 1024px) {
+            .profile-grid, .biz-grid { grid-template-columns: 1fr; }
+            .visual h1 { font-size: 3rem; }
+            nav { padding: 0 5%; }
+            .menu { display: none; }
+        }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">ZEROTOBE</div>
+    <div class="logo">ZERO<span>TO</span>BE</div>
     <div class="menu">
-        <a href="#vision">Vision</a>
+        <a href="#about">About</a>
         <a href="#business">Business</a>
+        <a href="#system">System</a>
         <a href="#reference">Reference</a>
     </div>
 </nav>
 
-<div class="hero">
-    <h1>From Zero. To be.</h1>
-    <p>세상의 무(Zero)에서 존재(To be)를 창조하는 스마트 물류 솔루션</p>
+<div class="visual">
+    <div data-aos="fade-up" data-aos-duration="1000">
+        <h1>From Zero. To be.<br>Digital Logistics.</h1>
+        <p>데이터 기반의 운영 최적화, 스마트 물류의 표준을 제시합니다.</p>
+    </div>
+    <div class="scroll-down">SCROLL EXPLORE</div>
 </div>
 
-<div class="container">
-    <section id="vision">
-        <div class="vision-card">
-            <h3>Our Mission & Vision</h3>
-            <p>제로에서 시작하여 새로운 가치를 창조하고,<br>세상을 바꾸는 존재로 거듭나길 지향합니다.</p>
+<section class="profile-section" id="about">
+    <div class="content">
+        <div class="profile-grid">
+            <div class="profile-card" data-aos="fade-right">
+                <div class="sec-title">
+                    <h2>Company Profile</h2>
+                    <div class="bar"></div>
+                </div>
+                <h3>물류 현장의 한계를<br>디지털 혁신으로 넘어서다.</h3>
+                <p>
+                    주식회사 제로투비는 유통·물류 산업의 복잡한 프로세스를 IT 기술로 단순화하고 최적화합니다. 풍부한 구축 경험을 가진 전문가들이 고객사의 비즈니스에 가장 적합한 아키텍처를 제안합니다.
+                </p>
+                <div style="font-weight: 700; color: var(--accent); display: inline-flex; align-items: center;">
+                    <span style="width: 20px; height: 2px; background: var(--accent); margin-right: 10px;"></span>
+                    Smart Logistics IT Partner
+                </div>
+            </div>
+            <div class="vision-container" data-aos="fade-left">
+                <div class="vision-item">
+                    <strong>OUR MISSION</strong>
+                    <p>기술을 넘어 가치를 연결하는 스마트 물류 솔루션</p>
+                </div>
+                <div class="vision-item">
+                    <strong>OUR VISION</strong>
+                    <p>제로에서 시작하여 물류 IT의 글로벌 스탠다드를 창조합니다.</p>
+                </div>
+            </div>
         </div>
-        <p style="text-align: center; color: #666;">주식회사 제로투비는 데이터 기반 운영 최적화와 안정적인 시스템을 통해<br>고객 맞춤형 스마트 물류 환경을 선도합니다.</p>
-    </section>
+    </div>
+</section>
 
-    <section id="business">
-        <h2>Main Business</h2>
-        <div class="grid">
-            <div class="card">
-                <span class="icon">📦</span>
+<section id="business">
+    <div class="content">
+        <div class="sec-title" data-aos="fade-up">
+            <h2>Main Business</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="biz-grid">
+            <div class="biz-item" data-aos="fade-up" data-aos-delay="100">
+                <span class="icon">01</span>
                 <h3>물류관리 솔루션</h3>
-                <p>WMS(창고관리), WCS(제어), PDA 모바일 시스템 등 현장 맞춤형 최적화 솔루션</p>
+                <p>WMS, WCS, PDA 기반 실시간 재고 관리 및 데이터 분석을 통한 물류 운영 효율 극대화</p>
             </div>
-            <div class="card">
-                <span class="icon">📈</span>
+            <div class="biz-item" data-aos="fade-up" data-aos-delay="200">
+                <span class="icon">02</span>
                 <h3>유통/주문관리</h3>
-                <p>OMS(주문관리), DMS(수입유통관리) 구축 및 전문적인 IT 프로세스 컨설팅</p>
+                <p>OMS 주문 통합 관리 시스템 및 DMS 수입유통 전산화 솔루션으로 정확한 유통 흐름 제어</p>
             </div>
-            <div class="card">
-                <span class="icon">⚙️</span>
-                <h3>자동화 & 로봇</h3>
-                <p>ACR 로봇 연동, 자동화 물류센터 피킹 제어 및 시스템 유지보수 기술지원</p>
+            <div class="biz-item" data-aos="fade-up" data-aos-delay="300">
+                <span class="icon">03</span>
+                <h3>자동화 & AI</h3>
+                <p>ACR 로봇 연동 기술 및 스마트 자동화 설비(DAS/Sorter) 제어를 위한 맞춤형 WCS 공급</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="reference">
-        <h2>Major Reference</h2>
-        <div class="ref-grid">
-            <div class="ref-item"><strong>WMS</strong> 에스로지스 코리아 (SLK) 3PL</div>
-            <div class="ref-item"><strong>WMS</strong> 롯데면세점 기내창고</div>
-            <div class="ref-item"><strong>WMS</strong> 한국초저온 (냉동·냉장)</div>
-            <div class="ref-item"><strong>WMS</strong> 네파 (패션 어패럴)</div>
-            <div class="ref-item"><strong>OMS</strong> 이마트 24 권고발주</div>
-            <div class="ref-item"><strong>DMS</strong> 투데이 칩스 (반도체 유통)</div>
-            <div class="ref-item"><strong>자동화</strong> 패션 어패럴 로봇 센터</div>
-            <div class="ref-item"><strong>로봇</strong> ACR 로봇 피킹 연동</div>
+<section id="system" style="background-color: var(--gray-light);">
+    <div class="content">
+        <div class="sec-title" data-aos="fade-up">
+            <h2>System Architecture</h2>
+            <div class="bar"></div>
+            <p style="margin-top:20px; color:var(--text-sub);">기간계 시스템 연동부터 현장 자동화 설비 제어까지, 통합 프로세스를 구축합니다.</p>
         </div>
-    </section>
-</div>
+
+        <div class="system-flow-card" data-aos="zoom-in">
+            <div class="flow-grid">
+                <div class="flow-node">
+                    <h4>ERP System</h4>
+                    <span>입/출고 예정 정보</span>
+                </div>
+                <div class="flow-arrow">▶</div>
+                <div class="flow-node" style="padding: 20px 40px; background: var(--primary); border-radius: 15px;">
+                    <h4 style="color: var(--point); font-size: 1.5rem;">WMS / WCS</h4>
+                    <span style="color: var(--white); opacity: 0.8;">Smart Management</span>
+                </div>
+                <div class="flow-arrow">◀▶</div>
+                <div class="flow-node">
+                    <h4>H/W Interface</h4>
+                    <span>PLC / BCR / RFID</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-grid">
+            <div class="vision-item" data-aos="fade-right" style="border-bottom: 4px solid var(--accent);">
+                <strong>INBOUND PROCESS</strong>
+                <p style="font-size: 1.4rem; margin-bottom: 20px; color: var(--primary);">입고 예정 및 적치 관리</p>
+                <ul style="list-style: none; font-size: 1rem; color: var(--text-main);">
+                    <li style="margin-bottom: 12px;">• 입고 검수지시 및 검수 실적 실시간 수신</li>
+                    <li style="margin-bottom: 12px;">• RFID 검수박스별 목적지 이동지시 제어</li>
+                    <li style="margin-bottom: 12px;">• ACR(로봇) 연동 최적 적치지시 및 실적 관리</li>
+                </ul>
+            </div>
+
+            <div class="vision-item" data-aos="fade-left" style="background: var(--secondary); color: white;">
+                <strong style="color: var(--accent);">OUTBOUND PROCESS</strong>
+                <p style="font-size: 1.4rem; margin-bottom: 20px;">출고 피킹 및 분류 최적화</p>
+                <ul style="list-style: none; font-size: 1rem; opacity: 0.9;">
+                    <li style="margin-bottom: 12px;">• 피킹지시 및 PDA 실시간 피킹 실적 수신</li>
+                    <li style="margin-bottom: 12px;">• BCR 기반 목적지 이동 및 유형별 분류 제어</li>
+                    <li style="margin-bottom: 12px;">• 오토라벨러 인터페이스 및 운송장 정보 송신</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;" data-aos="fade-up">
+            <span class="badge">RFID SYSTEM</span>
+            <span class="badge">AUTO LABELER</span>
+            <span class="badge">DAS / DPS</span>
+            <span class="badge">SORTER CONTROL</span>
+            <span class="badge">ACR ROBOT PICKING</span>
+            <span class="badge">CONVEYOR PLC I/F</span>
+        </div>
+    </div>
+</section>
+
+<section class="ref-section" id="reference">
+    <div class="content">
+        <div class="sec-title" data-aos="fade-up">
+            <h2>Major Reference</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="ref-container">
+            <div class="ref-group" data-aos="zoom-in" data-aos-delay="100">
+                <div class="ref-header">
+                    <span class="badge">WMS / Automation</span>
+                    <h3>물류 센터 구축</h3>
+                </div>
+                <ul class="ref-item-list">
+                    <li>에스로지스 코리아 (SLK) 통합 구축</li>
+                    <li>네파(NEPA) 평택 센터 자동화 WMS</li>
+                    <li>한국초저온 콜드체인 시스템 최적화</li>
+                    <li>씨젠 의료물류 관리 솔루션</li>
+                </ul>
+                <div class="ref-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehouse">
+                </div>
+            </div>
+
+            <div class="ref-group" data-aos="zoom-in" data-aos-delay="200">
+                <div class="ref-header">
+                    <span class="badge">OMS / Distribution</span>
+                    <h3>유통망 관리 시스템</h3>
+                </div>
+                <ul class="ref-item-list">
+                    <li>이마트 24 점포 권고발주 시스템</li>
+                    <li>투데이 칩스 반도체 유통관리</li>
+                    <li>SAMT 반도체 유통 ERP 연동</li>
+                    <li>롯데면세점 통합 물류 인터페이스</li>
+                </ul>
+                <div class="ref-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Data">
+                </div>
+            </div>
+
+            <div class="ref-group" data-aos="zoom-in" data-aos-delay="300">
+                <div class="ref-header">
+                    <span class="badge">Solution Interface</span>
+                    <h3>로봇 제어 & AI</h3>
+                </div>
+                <ul class="ref-item-list">
+                    <li>ACR 로봇 피킹 시뮬레이션</li>
+                    <li>물류 센터 레이아웃 최적화 컨설팅</li>
+                    <li>DAS/DPS 자동화 설비 제어</li>
+                    <li>실시간 대시보드 모니터링 구축</li>
+                </ul>
+                <div class="ref-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" alt="Robot">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer>
-    <div class="footer-content">
-        <p><strong>주식회사 제로투비 (ZEROTOBE)</strong></p>
-        <p>대표이사 장원봉 | 010. 5021. 0672 | zerotobe@kakao.com</p>
-        <p>솔루션사업부 이사 홍혜련 | 010. 9889. 0721 | hrhong0526@gmail.com</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
+    <div class="content">
+        <strong>ZEROTOBE</strong>
+        <div class="footer-info">
+            <p>대표이사 장원봉</p>
+            <p>Email : zerotobe@kakao.com | 경기도 남양주시 퇴계원로 90번길 25</p>
+            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.4;">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
+        </div>
     </div>
 </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 120
+    });
+</script>
 
 </body>
 </html>
