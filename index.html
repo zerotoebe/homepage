@@ -10,8 +10,8 @@
         :root {
             --primary: #1e2022;        /* 중후한 차콜 블랙 */
             --secondary: #2c2e30;
-            --accent: #c5a059;         /* 하이엔드 샌드 골드 */
-            --point: #d4af37;          /* 클래식 골드 */
+            --accent: #c5a059;          /* 하이엔드 샌드 골드 */
+            --point: #d4af37;           /* 클래식 골드 */
             --sub-point: #a8a29e;      /* 웜 그레이 */
             --text-main: #2d2d2d;
             --text-sub: #6b7280;
@@ -43,6 +43,7 @@
         .logo { 
             font-size: 1.8rem; font-weight: 800; color: var(--primary); 
             letter-spacing: -1px; display: flex; align-items: center;
+            text-decoration: none;
         }
         .logo span { color: var(--accent); margin-left: 2px; }
         .menu a {
@@ -93,23 +94,42 @@
         }
         .sec-title .bar { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
 
-        /* --- Profile Section --- */
+        /* --- Profile Section (Height Matching) --- */
         .profile-section { background: var(--gray-light); }
         .profile-grid {
-            display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center;
+            display: grid; 
+            grid-template-columns: 1fr 1.1fr; 
+            gap: 60px; 
+            align-items: stretch; /* 높이 맞춤 핵심 */
         }
         .profile-card {
-            background: var(--white); padding: clamp(30px, 5%, 50px); border-radius: 30px;
+            background: var(--white); 
+            padding: clamp(30px, 5%, 50px); 
+            border-radius: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             border-left: 10px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .profile-card h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 25px; color: var(--primary); line-height: 1.4; }
+        .profile-card h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 25px; color: var(--primary); line-height: 1.4; word-break: keep-all; }
         .profile-card p { color: var(--text-sub); font-size: 1.05rem; margin-bottom: 35px; word-break: keep-all; }
         
-        .vision-container { display: grid; gap: 20px; }
+        .vision-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
         .vision-item {
-            padding: 35px; border-radius: 24px; background: var(--white); 
-            border: 1px solid rgba(0,0,0,0.05); transition: var(--transition);
+            flex: 1; /* 높이 똑같이 분배 */
+            padding: 35px; 
+            border-radius: 24px; 
+            background: var(--white); 
+            border: 1px solid rgba(0,0,0,0.05); 
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .vision-item:first-child { border-bottom: 4px solid var(--sub-point); }
         .vision-item:last-child { background: var(--primary); color: var(--white); }
@@ -192,13 +212,40 @@
         .ref-group:hover .ref-image-wrap { filter: grayscale(0%); opacity: 1; }
         .ref-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- Footer --- */
+        /* --- Advanced Footer --- */
         footer {
-            background: #111214; color: #71717a; padding: 80px 20px;
-            text-align: center; border-top: 1px solid rgba(255,255,255,0.03);
+            background: #0f1113; /* 더 깊이감 있는 블랙 */
+            color: #a1a1aa; 
+            padding: 100px 0 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        footer strong { color: var(--white); font-size: 1.6rem; display: block; margin-bottom: 25px; letter-spacing: 2px; }
-        .footer-info p { margin-bottom: 8px; font-size: 0.9rem; }
+        .footer-top {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 80px; flex-wrap: wrap; gap: 40px;
+        }
+        .footer-brand .f-logo {
+            font-size: 2rem; font-weight: 800; color: var(--white);
+            letter-spacing: -1px; margin-bottom: 15px; display: block; text-decoration: none;
+        }
+        .footer-brand .f-logo span { color: var(--accent); }
+        .footer-brand .f-slogan { font-size: 0.95rem; font-weight: 300; letter-spacing: 1px; opacity: 0.6; }
+
+        .footer-contact { display: grid; grid-template-columns: repeat(2, auto); gap: 60px; }
+        .contact-item strong {
+            display: block; color: var(--accent); font-size: 0.75rem;
+            letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;
+        }
+        .contact-item p { color: #e4e4e7; font-size: 1rem; font-weight: 400; }
+        .contact-item a { color: #e4e4e7; text-decoration: none; transition: var(--transition); }
+        .contact-item a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 20px;
+        }
+        .footer-bottom .copyright { font-size: 0.85rem; opacity: 0.4; }
+        .footer-bottom .company-info { font-size: 0.85rem; opacity: 0.6; display: flex; gap: 20px; }
 
         /* --- Responsive Design --- */
         @media (max-width: 1100px) {
@@ -207,18 +254,13 @@
 
         @media (max-width: 900px) {
             nav { padding: 0 5%; height: 75px; }
-            .menu { display: none; } /* 모바일 메뉴바 필요 시 추가 가능 */
+            .menu { display: none; } 
             .profile-grid, .process-grid { grid-template-columns: 1fr; }
+            .footer-top { flex-direction: column; margin-bottom: 50px; }
+            .footer-contact { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
             .visual { height: 60vh; }
             section { padding: 80px 0; }
-        }
-
-        @media (max-width: 600px) {
-            .biz-grid, .ref-container { grid-template-columns: 1fr; }
-            .flow-grid { flex-direction: column; }
-            .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
-            .visual h1 { font-size: 2.2rem; }
-            .sec-title h2 { font-size: 1.8rem; }
         }
 
         @keyframes bounce {
@@ -231,7 +273,7 @@
 <body>
 
 <nav>
-    <div class="logo">ZERO<span>TO</span>BE</div>
+    <a href="#" class="logo">ZERO<span>TO</span>BE</a>
     <div class="menu">
         <a href="#about">About</a>
         <a href="#business">Business</a>
@@ -242,8 +284,8 @@
 
 <div class="visual">
     <div data-aos="fade-up" data-aos-duration="1000">
-        <h1>From Zero. To be.<br>Digital Logistics.</h1>
-        <p>데이터 기반의 운영 최적화, 스마트 물류의 표준을 제시합니다.</p>
+        <h1>ZEROTOBE<br>Smart Logistics.</h1>
+        <p>From Zero. To be.<br><strong>현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</strong></p>
     </div>
     <div class="scroll-down">SCROLL EXPLORE</div>
 </div>
@@ -256,9 +298,11 @@
                     <h2>Company Profile</h2>
                     <div class="bar"></div>
                 </div>
-                <h3>물류 현장의 한계를<br>디지털 혁신으로 넘어서다.</h3>
+                <h3>고객과 함께 성장하며<br>내일을 설계하는 파트너</h3>
                 <p>
-                    주식회사 제로투비는 유통·물류 산업의 복잡한 프로세스를 IT 기술로 단순화하고 최적화합니다. 풍부한 구축 경험을 가진 전문가들이 고객사의 비즈니스에 가장 적합한 아키텍처를 제안합니다.
+                    우리는 작은 팀으로 시작했지만, 고객과 함께 성장하여 지금의 회사를 이루었습니다. 
+                    이제 단순한 IT 지원을 넘어 <strong>고객의 비즈니스 내일을 함께 설계하는</strong> 
+                    신뢰받는 회사가 되겠습니다. 현장의 복잡한 프로세스를 디지털 혁신으로 최적화합니다.
                 </p>
                 <div style="font-weight: 700; color: var(--accent); display: inline-flex; align-items: center;">
                     <span style="width: 20px; height: 2px; background: var(--accent); margin-right: 10px;"></span>
@@ -268,11 +312,11 @@
             <div class="vision-container" data-aos="fade-left">
                 <div class="vision-item">
                     <strong>OUR MISSION</strong>
-                    <p>기술을 넘어 가치를 연결하는 스마트 물류 솔루션</p>
+                    <p>현장의 복잡한 프로세스를 가장 명쾌한 실전형 시스템으로 구현합니다.</p>
                 </div>
                 <div class="vision-item">
                     <strong>OUR VISION</strong>
-                    <p>제로에서 시작하여 물류 IT의 글로벌 스탠다드를 창조합니다.</p>
+                    <p>고객과 함께 현장에서 호흡하며, 물류 IT의 살아있는 정석을 증명합니다.</p>
                 </div>
             </div>
         </div>
@@ -353,15 +397,6 @@
                 </ul>
             </div>
         </div>
-
-        <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;" data-aos="fade-up">
-            <span class="badge">RFID SYSTEM</span>
-            <span class="badge">AUTO LABELER</span>
-            <span class="badge">DAS / DPS</span>
-            <span class="badge">SORTER CONTROL</span>
-            <span class="badge">ACR ROBOT PICKING</span>
-            <span class="badge">CONVEYOR PLC I/F</span>
-        </div>
     </div>
 </section>
 
@@ -375,13 +410,14 @@
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="100">
                 <div class="ref-header">
                     <span class="badge">WMS / Automation</span>
-                    <h3>물류 센터 구축</h3>
+                    <h3>WMS 솔루션/구축</h3>
                 </div>
                 <ul class="ref-item-list">
-                    <li>에스로지스 코리아 (SLK) 통합 구축</li>
-                    <li>네파(NEPA) 평택 센터 자동화 WMS</li>
-                    <li>한국초저온 콜드체인 시스템 최적화</li>
+                    <li>로지스밸리 SLK</li>
+                    <li>네파(NEPA) 평택 센터 자동화센터</li>
+                    <li>롯데면세점 통합 물류 인터페이스</li>
                     <li>씨젠 의료물류 관리 솔루션</li>
+                    <li>SAMT 반도체 재고관리 시스템</li>
                 </ul>
                 <div class="ref-image-wrap">
                     <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehouse">
@@ -396,7 +432,8 @@
                     <li>이마트 24 점포 권고발주 시스템</li>
                     <li>투데이 칩스 반도체 유통관리</li>
                     <li>SAMT 반도체 유통 ERP 연동</li>
-                    <li>롯데면세점 통합 물류 인터페이스</li>
+                    <li>한국초저온 콜드체인</li>
+                    <li>소프트팩 주문관리시스템</li>
                 </ul>
                 <div class="ref-image-wrap">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Data">
@@ -405,13 +442,13 @@
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="300">
                 <div class="ref-header">
                     <span class="badge">Solution Interface</span>
-                    <h3>로봇 제어 & AI</h3>
+                    <h3>물류자동화</h3>
                 </div>
                 <ul class="ref-item-list">
-                    <li>ACR 로봇 피킹 시뮬레이션</li>
-                    <li>물류 센터 레이아웃 최적화 컨설팅</li>
-                    <li>DAS/DPS 자동화 설비 제어</li>
-                    <li>실시간 대시보드 모니터링 구축</li>
+                    <li>자동화센터 데이터관리/제어</li>
+                    <li>AMR/ACR 로봇 적치/피킹 시뮬레이션</li>
+                    <li>SMS / DAS / RFID / BCR 자동화 설비 제어</li>
+                    <li>컨베이어 라인분기(BCR)</li>
                 </ul>
                 <div class="ref-image-wrap">
                     <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" alt="Robot">
@@ -423,11 +460,32 @@
 
 <footer>
     <div class="content">
-        <strong>ZEROTOBE</strong>
-        <div class="footer-info">
-            <p>대표이사 장원봉</p>
-            <p>Email : zerotobe@kakao.com | 경기도 남양주시 퇴계원로 90번길 25</p>
-            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.4;">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="f-logo">ZERO<span>TO</span>BE</a>
+                <p class="f-slogan">현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</p>
+            </div>
+            
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <strong>Contact</strong>
+                    <p><a href="mailto:zerotobe@kakao.com">zerotobe@kakao.com</a></p>
+                    <p>대표이사 장원봉</p>
+                </div>
+                <div class="contact-item">
+                    <strong>Location</strong>
+                    <p>경기도 남양주시 퇴계원로 91번길 25</p>
+                    <p>KR-Office, Namyangju</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
+            <div class="company-info">
+                <span></span>
+                <span>Smart Logistics IT Solution</span>
+            </div>
         </div>
     </div>
 </footer>
