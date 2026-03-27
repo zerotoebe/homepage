@@ -7,68 +7,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50; /* 진회색 */
-            --accent-color: #007aff;  /* 포인트 블루 */
+            --primary-color: #2c3e50;
+            --accent-color: #007aff;
             --text-dark: #333;
             --text-light: #666;
             --bg-light: #f8f9fa;
         }
 
         html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; color: var(--text-dark); line-height: 1.6; background-color: #fff; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; color: var(--text-dark); line-height: 1.6; background-color: #fff; -webkit-text-size-adjust: none; }
 
-        /* 헤더 스타일 - 화이트 & 미니멀 */
+        /* 헤더 - 모바일 대응 */
         header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); border-bottom: 1px solid #eee; z-index: 1000; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+        .logo img { height: 35px; vertical-align: middle; } /* 모바일에서 로고 살짝 줄임 */
         
-        .logo img { height: 45px; vertical-align: middle; } /* 로고 크기 조절 */
-        
-        .nav-menu ul { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
-        .nav-menu a { font-size: 15px; font-weight: 500; color: var(--text-dark); text-decoration: none; transition: 0.3s; }
-        .nav-menu a:hover { color: var(--accent-color); }
+        .nav-menu ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-menu a { font-size: 14px; font-weight: 500; color: var(--text-dark); text-decoration: none; }
 
         /* 섹션 공통 */
-        section { padding: 120px 20px; }
+        section { padding: 80px 20px; }
         .container { max-width: 1100px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 70px; }
-        .section-header h2 { font-size: 38px; font-weight: 700; margin-bottom: 20px; letter-spacing: -1px; }
-        .section-header p { font-size: 18px; color: var(--text-light); }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
 
- 
+        /* 메인 배너 - 모바일에서 이미지 위치 조정 */
         #home { 
-            height: 90vh; 
-            background: linear-gradient(to right, #ffffff 30%, rgba(255,255,255,0) 100%), 
-                        url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1600') no-repeat center right/cover;
-            display: flex; align-items: center; justify-content: flex-start;
+            height: 100vh; 
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1600') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center;
         }
-        .hero-text { max-width: 600px; }
-        .hero-text h1 { font-size: 52px; font-weight: 700; margin-bottom: 25px; line-height: 1.2; }
-        .hero-text h1 span { color: var(--accent-color); }
-        .hero-text p { font-size: 20px; color: var(--text-light); margin-bottom: 35px; }
-        .btn-main { padding: 15px 35px; background: var(--primary-color); color: #fff; font-weight: 600; border-radius: 4px; text-decoration: none; transition: 0.3s; }
-        .btn-main:hover { background: var(--accent-color); transform: translateY(-2px); }
+        .hero-text h1 { font-size: 36px; font-weight: 700; margin-bottom: 20px; line-height: 1.3; }
+        .hero-text p { font-size: 18px; margin-bottom: 30px; }
 
-        /* 기능 카드 스타일 */
-        #features { background-color: var(--bg-light); }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .feature-card { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid #eee; transition: 0.3s; }
-        .feature-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.1); transform: translateY(-10px); }
-        .feature-icon { font-size: 40px; margin-bottom: 20px; color: var(--accent-color); display: block; }
-        .feature-card h3 { font-size: 22px; margin-bottom: 15px; }
-        .feature-card p { color: var(--text-light); font-size: 15px; }
+        /* 그리드 시스템 - 모바일에서 1줄로 변경 */
+        .feature-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .feature-card { background: #fff; padding: 30px; border-radius: 12px; border: 1px solid #eee; }
 
-        /* 기술 스택 - 1인 기업의 전문성 강조 */
-        #tech { text-align: center; background: #fff; }
-        .tech-list { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-top: 40px; }
-        .tech-item { font-weight: 700; color: #999; font-size: 24px; }
+        /* 기술 스택 모바일 폰트 조절 */
+        .tech-list { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .tech-item { font-size: 18px; color: #bbb; font-weight: 700; }
 
-        /* 문의 섹션 */
-        #contact { background-color: var(--primary-color); color: #fff; text-align: center; }
-        .contact-box { background: rgba(255,255,255,0.1); padding: 50px; border-radius: 15px; display: inline-block; width: 100%; max-width: 600px; }
-        .contact-box p { font-size: 20px; margin: 10px 0; }
-        .contact-box .email { color: var(--accent-color); font-weight: bold; }
+        /* 문의 섹션 모바일 대응 */
+        .contact-box { width: 100%; box-sizing: border-box; padding: 30px 20px; }
 
-        footer { padding: 40px 20px; background: #f1f1f1; text-align: center; font-size: 14px; color: #888; }
+        /* ============================================================ */
+        /* 모바일/태블릿용 반응형 코드 (Media Query) */
+        /* ============================================================ */
+        @media (min-width: 768px) {
+            section { padding: 120px 20px; }
+            .section-header h2 { font-size: 38px; }
+            .nav-menu a { font-size: 16px; }
+            .logo img { height: 45px; }
+            
+            /* PC에서는 좌측 정렬 및 배경 처리 */
+            #home { justify-content: flex-start; text-align: left; background: linear-gradient(to right, #ffffff 30%, rgba(255,255,255,0) 100%), url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1600') no-repeat center right/cover; }
+            .hero-text h1 { font-size: 52px; }
+            
+            /* PC에서는 가로로 배치 */
+            .feature-grid { grid-template-columns: repeat(3, 1fr); }
+            .about-flex { display: flex; gap: 40px; align-items: center; }
+            .about-flex div { flex: 1; }
+        }
     </style>
 </head>
 <body>
@@ -76,7 +77,7 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <a href="#home"><img src="logo.png" alt="ZEROTOBE"></a>
+                <a href="#home"><img src="" alt="ZEROTOBE"></a>
             </div>
             <nav class="nav-menu">
                 <ul>
@@ -92,9 +93,9 @@
     <section id="home">
         <div class="container">
             <div class="hero-text">
-                <h1>물류의 흐름을<br><span>데이터</span>로 완성하다</h1>
-                <p>ZEROTOBE는 Java/MSSQL 기반의 고성능 WMS 솔루션으로 현장의 효율을 극대화합니다.</p>
-                <a href="#features" class="btn-main">솔루션 자세히 보기</a>
+                <h1>물류의 흐름을<br><span style="color:var(--accent-color);">데이터</span>로 완성하다</h1>
+                <p>ZEROTOBE는 고성능 WMS 솔루션으로<br>현장의 효율을 극대화합니다.</p>
+                <a href="#features" style="padding: 15px 35px; background: var(--primary-color); color: #fff; font-weight: 600; border-radius: 4px; text-decoration: none;">솔루션 자세히 보기</a>
             </div>
         </div>
     </section>
@@ -103,79 +104,66 @@
         <div class="container">
             <div class="section-header">
                 <h2>Why ZEROTOBE?</h2>
-                <p>포스트시스템의 견고함과 1인 기업의 신속한 대응력을 동시에 갖췄습니다.</p>
+                <p>신뢰할 수 있는 기술력과 신속한 대응력을 갖췄습니다.</p>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-                <div>
+            <div class="about-flex">
+                <div style="margin-bottom: 30px;">
                     <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800" alt="tech" style="width:100%; border-radius:10px;">
                 </div>
                 <div>
-                    <h3 style="font-size: 26px;">맞춤형 로직 설계</h3>
+                    <h3 style="font-size: 24px; color:var(--primary-color);">맞춤형 로직 설계</h3>
                     <p>기성 솔루션에 업무를 맞추지 마세요. 사장님의 물류 현장에 딱 맞는 워크플로우를 직접 설계하고 구현합니다.</p>
-                    <ul style="padding: 0; line-height: 2;">
-                        <li>✔️ MSSQL 기반의 대용량 데이터 처리 최적화</li>
-                        <li>✔️ Java 기반의 유연한 시스템 확장성</li>
-                        <li>✔️ 현장 요구사항 즉시 반영 (1인 개발의 강점)</li>
+                    <ul style="padding-left: 20px; line-height: 2.2;">
+                        <li>MSSQL 기반 대용량 데이터 최적화</li>
+                        <li>Java 기반 시스템 확장성 보장</li>
+                        <li>현장 요구사항 즉시 반영</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features">
+    <section id="features" style="background-color: var(--bg-light);">
         <div class="container">
             <div class="section-header">
                 <h2>핵심 기능</h2>
-                <p>복잡한 물류 프로세스를 직관적인 인터페이스로 관리하세요.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
+                    <div style="font-size:40px; margin-bottom:15px;">⚡</div>
                     <h3>실시간 입출고</h3>
-                    <p>PDA 및 바코드 시스템 연동으로 오차 없는 실시간 재고 관리 시스템을 구축합니다.</p>
+                    <p>PDA 및 바코드 시스템 연동으로 오차 없는 재고 관리 시스템을 구축합니다.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">🛡️</span>
+                    <div style="font-size:40px; margin-bottom:15px;">🛡️</div>
                     <h3>안정적인 DB</h3>
-                    <p>정규화된 데이터베이스 설계를 통해 데이터 무결성을 보장하고 빠른 조회 성능을 제공합니다.</p>
+                    <p>정규화된 DB 설계를 통해 데이터 무결성과 빠른 성능을 제공합니다.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">📱</span>
-                    <h3>반응형 관리자 UI</h3>
-                    <p>PC와 태블릿 어디서든 현장 상황을 모니터링할 수 있는 대시보드를 제공합니다.</p>
+                    <div style="font-size:40px; margin-bottom:15px;">📊</div>
+                    <h3>관리자 대시보드</h3>
+                    <p>PC와 모바일 어디서든 현장 상황을 한눈에 모니터링하세요.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="tech">
+    <section id="contact" style="background-color: var(--primary-color); color: #fff; text-align: center;">
         <div class="container">
-            <h2 style="color: #ccc; margin-bottom: 40px;">TECHNOLOGY STACK</h2>
-            <div class="tech-list">
-                <div class="tech-item">JAVA</div>
-                <div class="tech-item">MSSQL</div>
-                <div class="tech-item">SPRING FRAMEWORK</div>
-                <div class="tech-item">REST API</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <div class="section-header" style="color:#fff;">
+            <div class="section-header">
                 <h2 style="color:#fff;">CONTACT US</h2>
-                <p style="color:#ccc;">귀사의 물류 시스템 고도화를 위한 최고의 파트너가 되겠습니다.</p>
+                <p style="color:#ccc;">물류 시스템 고도화를 위한 최고의 파트너가 되겠습니다.</p>
             </div>
-            <div class="contact-box">
-                <p>담당자: 사장님 성함</p>
-                <p>연락처: 010-XXXX-XXXX</p>
-                <p class="email">Email: yourid@email.com</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 40px 20px; border-radius: 15px; display: inline-block; width: 100%; max-width: 500px;">
+                <p style="font-size: 18px; margin: 10px 0;">담당자: 사장님 성함</p>
+                <p style="font-size: 18px; margin: 10px 0;">연락처: 010-XXXX-XXXX</p>
+                <p style="font-size: 18px; margin: 10px 0; color:var(--accent-color); font-weight:bold;">Email: yourid@email.com</p>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 ZEROTOBE. All Rights Reserved. | 1인 법인 WMS 전문 기업</p>
+    <footer style="padding: 30px; background: #f1f1f1; text-align: center; font-size: 13px; color: #888;">
+        <p>&copy; 2026 ZEROTOBE. All Rights Reserved.</p>
     </footer>
 
 </body>
