@@ -3,99 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>주식회사 제로투비 (ZEROTOBE) | 스마트 물류 솔루션 전문</title>
+    <title>주식회사 제로투비 (ZEROTOBE)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f9f9f9; }
-        header { background: #002c5f; color: white; padding: 60px 20px; text-align: center; }
-        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 2px; }
-        header p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
-        .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
+        :root { --main-blue: #002c5f; --accent-blue: #0056b3; --bg-light: #f4f7fa; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; color: #333; background: var(--bg-light); line-height: 1.7; }
         
-        /* 섹션 공통 스타일 */
-        section { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
-        h2 { color: #002c5f; border-left: 5px solid #002c5f; padding-left: 15px; margin-bottom: 25px; }
+        /* 네비게이션 */
+        nav { background: rgba(0, 44, 95, 0.95); color: white; position: fixed; top: 0; width: 100%; height: 70px; 
+               display: flex; align-items: center; justify-content: space-between; padding: 0 10%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
+        .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: 2px; }
+        .menu a { color: white; text-decoration: none; margin-left: 30px; font-weight: 400; transition: 0.3s; }
+        .menu a:hover { color: #82b1ff; }
 
-        /* 회사소개 & 비전 */
-        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .vision-box { background: #f0f4f8; padding: 20px; border-radius: 8px; text-align: center; font-weight: bold; }
+        /* 히어로 섹션 */
+        .hero { background: linear-gradient(rgba(0,44,95,0.8), rgba(0,44,95,0.8)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80'); 
+                background-size: cover; background-position: center; height: 80vh; display: flex; flex-direction: column; 
+                justify-content: center; align-items: center; color: white; text-align: center; padding: 0 20px; }
+        .hero h1 { font-size: 3.5rem; margin: 0; letter-spacing: -1px; }
+        .hero p { font-size: 1.4rem; opacity: 0.9; margin-top: 20px; font-weight: 300; }
 
-        /* 주요 사업 (Main Business) */
-        .business-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .biz-card { border: 1px solid #eee; padding: 20px; border-radius: 8px; transition: 0.3s; }
-        .biz-card:hover { transform: translateY(-5px); border-color: #002c5f; }
-        .biz-card h3 { color: #004a99; margin-top: 0; }
+        .container { max-width: 1100px; margin: -100px auto 50px; padding: 0 20px; position: relative; }
+        
+        /* 섹션 공통 */
+        section { background: white; padding: 60px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 50px; }
+        h2 { color: var(--main-blue); font-size: 2rem; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 30px; }
 
-        /* 구축 실적 (Reference) - 중요! */
-        .ref-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .ref-list li { background: #f4f4f4; padding: 10px 15px; border-radius: 5px; font-size: 0.95rem; }
-        .ref-tag { color: #002c5f; font-weight: bold; margin-right: 8px; }
+        /* 비즈니스 카드 */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { padding: 30px; border: 1px solid #f0f0f0; border-radius: 15px; transition: 0.3s; background: #fff; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--accent-blue); }
+        .card h3 { color: var(--accent-blue); font-size: 1.3rem; margin-top: 0; }
 
-        footer { background: #333; color: white; padding: 40px 20px; text-align: center; font-size: 0.9rem; }
-        .contact { margin-top: 15px; font-style: normal; }
-        .contact p { margin: 5px 0; }
+        /* 실적 리스트 */
+        .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .ref-item { background: #f8f9fb; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; font-size: 0.95rem; }
+        .ref-item b { color: var(--main-blue); margin-right: 10px; width: 60px; display: inline-block; }
+
+        footer { background: #1a1a1a; color: #ccc; padding: 60px 20px; text-align: center; }
+        .footer-info { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px; }
+        .contact-box { margin: 10px; text-align: left; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ZEROTOBE</h1>
-    <p>From Zero. To be. 세상을 바꾸는 스마트 물류 파트너</p>
-</header>
+<nav>
+    <div class="logo">ZEROTOBE</div>
+    <div class="menu">
+        <a href="#profile">About</a>
+        <a href="#business">Business</a>
+        <a href="#reference">Reference</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>From Zero. To be.</h1>
+    <p>세상에 없던 가능성을 현실로 만드는 스마트 물류 파트너</p>
+</div>
 
 <div class="container">
-    <section>
+    <section id="profile">
         <h2>Company Profile</h2>
-        <p><strong>주식회사 제로투비</strong>는 물류 현장의 효율성과 정확성을 극대화하기 위한 IT 솔루션을 전문으로 개발 및 공급하는 물류·유통 IT 기업입니다. [cite: 124, 132]</p>
-        <div class="profile-grid">
-            <div>
-                <p><strong>대표이사:</strong> 장원봉 [cite: 133]</p>
-                <p><strong>설립일:</strong> 2025. 08. 07 [cite: 134]</p>
-            </div>
-            <div class="vision-box">
-                "제로에서 시작하여 새로운 가치를 창조하고,<br>가능성을 현실로 만드는 기업" [cite: 144, 145, 146]
-            </div>
+        <p style="font-size: 1.2rem; color: #555;">
+            <strong>주식회사 제로투비</strong>는 빠르게 변화하는 유통·물류 산업에 대응하여,<br> 
+            안정적인 시스템과 데이터 기반의 운영 최적화를 제공하는 물류·유통 IT 전문 기업입니다.
+        </p>
+        <div style="margin-top: 30px; display: flex; gap: 50px;">
+            <p><b>대표이사</b> 장원봉</p>
+            <p><b>설립일</b> 2025. 08. 07</p>
         </div>
     </section>
 
-    <section>
+    <section id="business">
         <h2>Main Business</h2>
-        <div class="business-grid">
-            <div class="biz-card">
-                <h3>물류관리 솔루션 (WMS/WCS)</h3>
-                <p>WareHouse Management System, PDA 기반 모바일 시스템, 로봇(ACR) 연동 및 제어 솔루션 [cite: 168, 169, 172, 210]</p>
+        <div class="grid">
+            <div class="card">
+                <h3>물류관리 솔루션</h3>
+                <p>WMS(창고관리), WCS(제어), PDA 모바일 시스템 등 물류 현장 최적화 솔루션 구축</p>
             </div>
-            <div class="biz-card">
-                <h3>주문/유통관리 (OMS/DMS)</h3>
-                <p>Order Management System 및 수입유통관리 솔루션 구축 [cite: 170, 171, 174, 176]</p>
+            <div class="card">
+                <h3>유통/주문관리</h3>
+                <p>OMS(주문관리), DMS(수입유통관리) 솔루션 및 체계적인 IT 컨설팅 제공</p>
             </div>
-            <div class="biz-card">
-                <h3>IT 컨설팅 및 시스템 구축</h3>
-                <p>물류 프로세스 최적화 컨설팅 및 유지보수/기술지원 서비스 제공 [cite: 175, 177, 178]</p>
+            <div class="card">
+                <h3>시스템 구축/유지보수</h3>
+                <p>고객 맞춤형 인프라 설계부터 안정적인 기술 지원 및 유지보수 서비스 운영</p>
             </div>
         </div>
     </section>
 
-    <section>
+    <section id="reference">
         <h2>Major Reference</h2>
-        <ul class="ref-list">
-            <li><span class="ref-tag">[WMS]</span> 에스로지스 코리아 (SLK) 3PL [cite: 181]</li>
-            <li><span class="ref-tag">[WMS]</span> 롯데면세점 기내창고 (보세 면세품) [cite: 190, 191]</li>
-            <li><span class="ref-tag">[WMS]</span> 네파 (패션 어패럴) [cite: 192, 193]</li>
-            <li><span class="ref-tag">[WMS]</span> 한국초저온 (냉동·냉장) [cite: 188, 189]</li>
-            <li><span class="ref-tag">[OMS]</span> 이마트 24 권고발주 (Forecast) [cite: 195]</li>
-            <li><span class="ref-tag">[DMS]</span> 투데이 칩스 (반도체 유통) [cite: 200, 201]</li>
-            <li><span class="ref-tag">[자동화]</span> 패션 어패럴 자동화 물류센터 구축 [cite: 207]</li>
-            <li><span class="ref-tag">[로봇]</span> ACR 로봇 명령 및 피킹 처리 연동 [cite: 210, 213]</li>
-        </ul>
+        <div class="ref-grid">
+            <div class="ref-item"><b>WMS</b> 에스로지스 코리아 (SLK) 3PL</div>
+            <div class="ref-item"><b>WMS</b> 롯데면세점 기내창고</div>
+            <div class="ref-item"><b>WMS</b> 한국초저온 (냉동·냉장)</div>
+            <div class="ref-item"><b>OMS</b> 이마트 24 권고발주</div>
+            <div class="ref-item"><b>자동화</b> 패션 어패럴 로봇 센터</div>
+            <div class="ref-item"><b>DMS</b> 투데이 칩스 (반도체)</div>
+            <div class="ref-item"><b>로봇</b> ACR 로봇 피킹 연동</div>
+            <div class="ref-item"><b>IT</b> 네파 패션 어패럴 솔루션</div>
+        </div>
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
-    <div class="contact">
-        <p><strong>대표이사 장원봉:</strong> 010. 5021. 0672 | zerotobe@kakao.com [cite: 223]</p>
-        <p><strong>솔루션사업부 이사 홍혜련:</strong> 010. 9889. 0721 | hrhong0526@gmail.com [cite: 224]</p>
+    <p>&copy; 2026 주식회사 제로투비. All Rights Reserved.</p>
+    <div class="footer-info">
+        <div class="contact-box">
+            <p><b>장원봉 대표이사</b></p>
+            <p>010. 5021. 0672</p>
+            <p>zerotobe@kakao.com</p>
+        </div>
+        <div class="contact-box">
+            <p><b>홍혜련 이사</b></p>
+            <p>010. 9889. 0721</p>
+            <p>hrhong0526@gmail.com</p>
+        </div>
     </div>
 </footer>
 
