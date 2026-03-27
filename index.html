@@ -5,45 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주식회사 제로투비 (ZEROTOBE)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-    
     <style>
-        :root { --main-blue: #002c5f; --accent-blue: #0056b3; --bg-light: #f4f7fa; }
-        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; color: #333; background: var(--bg-light); line-height: 1.7; }
+        :root { --main-blue: #002c5f; --sub-blue: #004a99; --accent: #00d2ff; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; color: #333; background: #f0f2f5; line-height: 1.6; }
         
         /* 네비게이션 */
-        nav { background: rgba(0, 44, 95, 0.95); color: white; position: fixed; top: 0; width: 100%; height: 70px; 
-               display: flex; align-items: center; justify-content: space-between; padding: 0 10%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
-        .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: 2px; }
-        .menu a { color: white; text-decoration: none; margin-left: 30px; font-weight: 400; transition: 0.3s; }
-        .menu a:hover { color: #82b1ff; }
+        nav { background: var(--main-blue); color: white; position: fixed; top: 0; width: 100%; height: 60px; 
+               display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-sizing: border-box; z-index: 1000; }
+        .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; }
+        .menu a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; opacity: 0.8; }
+        .menu a:hover { opacity: 1; color: var(--accent); }
 
         /* 히어로 섹션 */
-        .hero { background: linear-gradient(rgba(0,44,95,0.8), rgba(0,44,95,0.8)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80'); 
-                background-size: cover; background-position: center; height: 80vh; display: flex; flex-direction: column; 
-                justify-content: center; align-items: center; color: white; text-align: center; padding: 0 20px; }
-        .hero h1 { font-size: 3.5rem; margin: 0; letter-spacing: -1px; }
-        .hero p { font-size: 1.4rem; opacity: 0.9; margin-top: 20px; font-weight: 300; }
+        .hero { background: var(--main-blue); color: white; padding: 100px 20px 150px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin: 0; }
+        .hero p { font-size: 1.2rem; opacity: 0.8; margin-top: 15px; font-weight: 300; }
 
-        .container { max-width: 1100px; margin: -100px auto 50px; padding: 0 20px; position: relative; }
+        .container { max-width: 1000px; margin: -80px auto 50px; padding: 0 20px; }
         
         /* 섹션 공통 */
-        section { background: white; padding: 60px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 50px; }
-        h2 { color: var(--main-blue); font-size: 2rem; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 30px; }
+        section { background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        h2 { color: var(--main-blue); font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; }
+        h2::before { content: ""; display: inline-block; width: 5px; height: 25px; background: var(--accent); margin-right: 15px; border-radius: 3px; }
 
-        /* 비즈니스 카드 */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { padding: 30px; border: 1px solid #f0f0f0; border-radius: 15px; transition: 0.3s; background: #fff; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--accent-blue); }
-        .card h3 { color: var(--accent-blue); font-size: 1.3rem; margin-top: 0; }
+        /* 비전 박스 (PDF 느낌) */
+        .vision-card { background: linear-gradient(135deg, var(--main-blue), var(--sub-blue)); color: white; padding: 40px; border-radius: 12px; text-align: center; margin-bottom: 30px; }
+        .vision-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--accent); }
+        .vision-card p { font-size: 1.1rem; opacity: 0.9; line-height: 1.8; }
 
-        /* 실적 리스트 */
-        .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .ref-item { background: #f8f9fb; padding: 15px 20px; border-radius: 10px; display: flex; align-items: center; font-size: 0.95rem; }
-        .ref-item b { color: var(--main-blue); margin-right: 10px; width: 60px; display: inline-block; }
+        /* 서비스 카드 (포인트 아이콘 추가) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { padding: 30px; border: 1px solid #eee; border-radius: 12px; transition: 0.3s; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--sub-blue); transform: translateY(-5px); }
+        .card .icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .card h3 { color: var(--sub-blue); margin-top: 0; }
+        
+        /* 실적 리스트 (불렛 포인트) */
+        .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .ref-item { background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #ddd; font-size: 0.95rem; }
+        .ref-item strong { color: var(--main-blue); margin-right: 8px; }
 
-        footer { background: #1a1a1a; color: #ccc; padding: 60px 20px; text-align: center; }
-        .footer-info { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px; }
-        .contact-box { margin: 10px; text-align: left; }
+        footer { background: #222; color: #aaa; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
+        .footer-content { max-width: 800px; margin: 0 auto; line-height: 2; }
     </style>
 </head>
 <body>
@@ -51,7 +54,7 @@
 <nav>
     <div class="logo">ZEROTOBE</div>
     <div class="menu">
-        <a href="#profile">About</a>
+        <a href="#vision">Vision</a>
         <a href="#business">Business</a>
         <a href="#reference">Reference</a>
     </div>
@@ -59,36 +62,35 @@
 
 <div class="hero">
     <h1>From Zero. To be.</h1>
-    <p>세상에 없던 가능성을 현실로 만드는 스마트 물류 파트너</p>
+    <p>세상의 무(Zero)에서 존재(To be)를 창조하는 스마트 물류 솔루션</p>
 </div>
 
 <div class="container">
-    <section id="profile">
-        <h2>Company Profile</h2>
-        <p style="font-size: 1.2rem; color: #555;">
-            <strong>주식회사 제로투비</strong>는 빠르게 변화하는 유통·물류 산업에 대응하여,<br> 
-            안정적인 시스템과 데이터 기반의 운영 최적화를 제공하는 물류·유통 IT 전문 기업입니다.
-        </p>
-        <div style="margin-top: 30px; display: flex; gap: 50px;">
-            <p><b>대표이사</b> 장원봉</p>
-            <p><b>설립일</b> 2025. 08. 07</p>
+    <section id="vision">
+        <div class="vision-card">
+            <h3>Our Mission & Vision</h3>
+            <p>제로에서 시작하여 새로운 가치를 창조하고,<br>세상을 바꾸는 존재로 거듭나길 지향합니다.</p>
         </div>
+        <p style="text-align: center; color: #666;">주식회사 제로투비는 데이터 기반 운영 최적화와 안정적인 시스템을 통해<br>고객 맞춤형 스마트 물류 환경을 선도합니다.</p>
     </section>
 
     <section id="business">
         <h2>Main Business</h2>
         <div class="grid">
             <div class="card">
+                <span class="icon">📦</span>
                 <h3>물류관리 솔루션</h3>
-                <p>WMS(창고관리), WCS(제어), PDA 모바일 시스템 등 물류 현장 최적화 솔루션 구축</p>
+                <p>WMS(창고관리), WCS(제어), PDA 모바일 시스템 등 현장 맞춤형 최적화 솔루션</p>
             </div>
             <div class="card">
+                <span class="icon">📈</span>
                 <h3>유통/주문관리</h3>
-                <p>OMS(주문관리), DMS(수입유통관리) 솔루션 및 체계적인 IT 컨설팅 제공</p>
+                <p>OMS(주문관리), DMS(수입유통관리) 구축 및 전문적인 IT 프로세스 컨설팅</p>
             </div>
             <div class="card">
-                <h3>시스템 구축/유지보수</h3>
-                <p>고객 맞춤형 인프라 설계부터 안정적인 기술 지원 및 유지보수 서비스 운영</p>
+                <span class="icon">⚙️</span>
+                <h3>자동화 & 로봇</h3>
+                <p>ACR 로봇 연동, 자동화 물류센터 피킹 제어 및 시스템 유지보수 기술지원</p>
             </div>
         </div>
     </section>
@@ -96,31 +98,24 @@
     <section id="reference">
         <h2>Major Reference</h2>
         <div class="ref-grid">
-            <div class="ref-item"><b>WMS</b> 에스로지스 코리아 (SLK) 3PL</div>
-            <div class="ref-item"><b>WMS</b> 롯데면세점 기내창고</div>
-            <div class="ref-item"><b>WMS</b> 한국초저온 (냉동·냉장)</div>
-            <div class="ref-item"><b>OMS</b> 이마트 24 권고발주</div>
-            <div class="ref-item"><b>자동화</b> 패션 어패럴 로봇 센터</div>
-            <div class="ref-item"><b>DMS</b> 투데이 칩스 (반도체)</div>
-            <div class="ref-item"><b>로봇</b> ACR 로봇 피킹 연동</div>
-            <div class="ref-item"><b>IT</b> 네파 패션 어패럴 솔루션</div>
+            <div class="ref-item"><strong>WMS</strong> 에스로지스 코리아 (SLK) 3PL</div>
+            <div class="ref-item"><strong>WMS</strong> 롯데면세점 기내창고</div>
+            <div class="ref-item"><strong>WMS</strong> 한국초저온 (냉동·냉장)</div>
+            <div class="ref-item"><strong>WMS</strong> 네파 (패션 어패럴)</div>
+            <div class="ref-item"><strong>OMS</strong> 이마트 24 권고발주</div>
+            <div class="ref-item"><strong>DMS</strong> 투데이 칩스 (반도체 유통)</div>
+            <div class="ref-item"><strong>자동화</strong> 패션 어패럴 로봇 센터</div>
+            <div class="ref-item"><strong>로봇</strong> ACR 로봇 피킹 연동</div>
         </div>
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2026 주식회사 제로투비. All Rights Reserved.</p>
-    <div class="footer-info">
-        <div class="contact-box">
-            <p><b>장원봉 대표이사</b></p>
-            <p>010. 5021. 0672</p>
-            <p>zerotobe@kakao.com</p>
-        </div>
-        <div class="contact-box">
-            <p><b>홍혜련 이사</b></p>
-            <p>010. 9889. 0721</p>
-            <p>hrhong0526@gmail.com</p>
-        </div>
+    <div class="footer-content">
+        <p><strong>주식회사 제로투비 (ZEROTOBE)</strong></p>
+        <p>대표이사 장원봉 | 010. 5021. 0672 | zerotobe@kakao.com</p>
+        <p>솔루션사업부 이사 홍혜련 | 010. 9889. 0721 | hrhong0526@gmail.com</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
     </div>
 </footer>
 
