@@ -3,67 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회사이름 | WMS 솔루션</title>
+    <title>회사이름 | 스마트 WMS 솔루션</title>
     <style>
-        /* 부드러운 스크롤 효과 */
+        /* 기본 스타일 및 부드러운 스크롤 */
         html { scroll-behavior: smooth; }
-        body { font-family: sans-serif; margin: 0; line-height: 1.6; }
-        
-        /* 상단 고정 메뉴 */
-        nav { position: fixed; top: 0; width: 100%; background: #333; color: #fff; padding: 1rem 0; z-index: 1000; }
-        nav ul { display: flex; justify-content: center; list-style: none; margin: 0; padding: 0; }
-        nav ul li { margin: 0 20px; }
-        nav ul li a { color: #fff; text-decoration: none; font-weight: bold; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* 컬러 변수 설정 (참고 사이트 블루 톤 반영) */
+        :root { --main-blue: #0056bf; --dark-blue: #003a8c; --light-gray: #f4f7fa; }
+
+        /* 상단 고정 헤더/메뉴 */
+        header { position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo a { font-size: 24px; font-weight: bold; color: var(--main-blue); }
+        .nav-menu ul { display: flex; gap: 30px; }
+        .nav-menu a { font-size: 16px; font-weight: 500; color: #555; transition: color 0.3s; }
+        .nav-menu a:hover { color: var(--main-blue); }
 
         /* 섹션 공통 스타일 */
-        section { padding: 100px 20px; height: 80vh; border-bottom: 1px solid #ddd; text-align: center; }
-        .content { max-width: 800px; margin: 0 auto; }
-        
-        /* 섹션별 배경색 구분 */
-        #home { background: #f4f4f4; }
+        section { padding: 120px 20px; text-align: center; }
+        .section-title { font-size: 36px; font-weight: 700; color: #111; margin-bottom: 20px; }
+        .section-subtitle { font-size: 18px; color: #666; max-width: 700px; margin: 0 auto 60px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* 메인 비주얼 (Hero Section) */
+        #home { background: linear-gradient(135deg, rgba(0,86,191,0.9), rgba(0,58,140,0.9)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600') no-repeat center center/cover; color: #fff; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        #home h1 { font-size: 48px; font-weight: 700; margin-bottom: 20px; }
+        #home p { font-size: 20px; margin-bottom: 40px; opacity: 0.9; }
+        .btn-more { display: inline-block; padding: 12px 30px; background: #fff; color: var(--main-blue); font-weight: 600; border-radius: 5px; transition: background 0.3s; }
+        .btn-more:hover { background: var(--light-gray); }
+
+        /* 회사 소개 섹션 */
         #intro { background: #fff; }
-        #wms-features { background: #e9ecef; }
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; text-align: left; align-items: center; }
+        .intro-text h3 { font-size: 28px; color: var(--main-blue); margin-bottom: 15px; }
+        .intro-text p { color: #555; font-size: 16px; margin-bottom: 10px; }
+        .intro-img { background: var(--light-gray); padding: 40px; border-radius: 10px; font-weight: bold; color: #999; text-align: center;} /* 임시 이미지 박스 */
+
+        /* WMS 주요 기능 섹션 (아이콘 그리드 반영) */
+        #features { background: var(--light-gray); }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-item { background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .feature-item:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 40px; color: var(--main-blue); margin-bottom: 25px; } /* 아이콘은 임시 문자로 대체 */
+        .feature-item h3 { font-size: 22px; margin-bottom: 15px; color: #111; }
+        .feature-item p { color: #666; font-size: 15px; }
+
+        /* 문의하기 섹션 */
         #contact { background: #fff; }
+        .contact-info { max-width: 600px; margin: 0 auto; background: var(--light-gray); padding: 50px; border-radius: 10px; }
+        .contact-info p { font-size: 18px; margin-bottom: 15px; }
+        .contact-email { color: var(--main-blue); font-weight: bold; }
+
+        /* 푸터 */
+        footer { background: #333; color: rgba(255,255,255,0.7); padding: 30px 20px; text-align: center; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="#home">홈</a></li>
-            <li><a href="#intro">회사소개</a></li>
-            <li><a href="#wms-features">WMS기능</a></li>
-            <li><a href="#contact">문의하기</a></li>
-        </ul>
-    </nav>
+    <header>
+        <div class="nav-container">
+            <div class="logo"><a href="#home">LOGISWMS</a></div> <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home">홈</a></li>
+                    <li><a href="#intro">회사소개</a></li>
+                    <li><a href="#features">WMS 기능</a></li>
+                    <li><a href="#contact">문의하기</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <section id="home">
-        <div class="content">
-            <h1>스마트 물류의 시작</h1>
-            <p>1인 법인으로서 책임감 있는 WMS 구축을 약속합니다.</p>
+        <div class="container">
+            <h1>스마트 물류의 시작, LOGISWMS</h1>
+            <p>1인 법인의 책임감과 기술력으로 귀사의 물류 효율을 극대화합니다.</p>
+            <a href="#features" class="btn-more">핵심 기능 보기</a>
         </div>
     </section>
 
     <section id="intro">
-        <div class="content">
-            <h2>회사 소개</h2>
-            <p>Java, MSSQL 기반의 안정적인 시스템을 제공합니다.</p>
+        <div class="container">
+            <h2 class="section-title">회사 소개</h2>
+            <p class="section-subtitle">Java 및 MSSQL 기반의 안정적이고 확장성 있는 WMS 솔루션을 제공합니다.</p>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h3>신뢰받는 물류 파트너</h3>
+                    <p>LOGISWMS는 다양한 물류 현장의 경험을 바탕으로,</p>
+                    <p>귀사의 비즈니스에 최적화된 맞춤형 시스템을 구축해 드립니다.</p>
+                    <p>1인 기업의 유연함으로 신속하고 효율적인 지원을 약속합니다.</p>
+                </div>
+                <div class="intro-img">
+                    WMS 화면 캡처 또는 이미지 영역
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="wms-features">
-        <div class="content">
-            <h2>WMS 주요 기능</h2>
-            <p>입고, 출고, 재고 관리를 실시간으로 처리하세요.</p>
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">WMS 주요 기능</h2>
+            <p class="section-subtitle">입고부터 출고까지, 물류 전 과정을 실시간으로 관리하고 최적화하세요.</p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📥</div> <h3>입고 관리</h3>
+                    <p>발주 데이터 연동, 바코드 스캔을 통한 신속하고 정확한 입고 처리 및 적치 최적화.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div> <h3>재고 관리</h3>
+                    <p>로케이션별 실시간 재고 조회, 재고 이동 및 조정, 유통기한 관리 등 완벽한 재고 통제.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📤</div> <h3>출고 관리</h3>
+                    <p>주문 데이터 기반의 피킹 리스트 생성, 패킹 및 송장 발행, 최적의 배송 처리.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div> <h3>통계 및 분석</h3>
+                    <p>물류 현황을 한눈에 파악하는 대시보드 및 각종 통계 리포트 제공.</p>
+                </div>
             </div>
+        </div>
     </section>
 
     <section id="contact">
-        <div class="content">
-            <h2>문의하기</h2>
-            <p>이메일: example@email.com</p>
+        <div class="container">
+            <h2 class="section-title">문의하기</h2>
+            <p class="section-subtitle">WMS 구축 및 상담이 필요하시면 언제든 연락주세요. 신속히 답변 드리겠습니다.</p>
+            <div class="contact-info">
+                <p>📞 전화: 010-0000-0000</p>
+                <p>📧 이메일: <a href="mailto:example@email.com" class="contact-email">example@email.com</a></p>
+                <p>🏢 주소: 서울특별시 OOO구 OOO로 OOO</p>
+            </div>
         </div>
     </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 회사이름. All Rights Reserved.</p>
+            <p>1인 법인 WMS 솔루션 전문가</p>
+        </div>
+    </footer>
 
 </body>
 </html>
