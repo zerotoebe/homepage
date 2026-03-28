@@ -294,6 +294,23 @@
         40% {transform: translateY(-10px);}
         60% {transform: translateY(-5px);}
     }
+
+    /* 가로 스크롤 완벽 차단용 패치 */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    @media (max-width: 900px) {
+        .profile-grid, .biz-grid, .ref-container, .process-grid {
+            width: 100% !important;
+            margin: 0 !important;
+        }
+        .visual h1 {
+            word-break: keep-all; /* 제목이 너무 길어서 밀어내는 것 방지 */
+        }
+    }
+     
 </style>
 
 </head>
