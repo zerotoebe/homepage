@@ -1,3 +1,7 @@
 url: "https://zerotobe.com"
+title: "제로투비(ZEROTOBE)"
+description: "스마트한 물류시스템의 시작"
+author: "장원봉"
+lang: "ko-KR"
 plugins:
   - jekyll-sitemap
