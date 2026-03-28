@@ -1,412 +1,761 @@
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>주식회사 제로투비 (ZEROTOBE) | Smart Logistics IT</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #1e2022;
-            --secondary: #2c2e30;
-            --accent: #c5a059;
-            --point: #d4af37;
-            --sub-point: #a8a29e;
-            --text-main: #2d2d2d;
-            --text-sub: #6b7280;
-            --white: #ffffff;
-            --gray-light: #f4f4f2;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Inter', 'Noto Sans KR', sans-serif; 
-            color: var(--text-main); 
-            line-height: 1.7; 
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
+ <style>
+    :root {
+        --primary: #1e2022;        /* 중후한 차콜 블랙 */
+        --secondary: #2c2e30;
+        --accent: #c5a059;          /* 하이엔드 샌드 골드 */
+        --point: #d4af37;            /* 클래식 골드 */
+        --sub-point: #a8a29e;      /* 웜 그레이 */
+        --text-main: #2d2d2d;
+        --text-sub: #6b7280;
+        --white: #ffffff;
+        --gray-light: #f4f4f2;
+        --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        /* --- Navigation --- */
-        nav {
-            position: fixed; top: 0; width: 100%; height: 90px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 8%; z-index: 1000;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-        }
-        .logo { 
-            font-size: 1.8rem; font-weight: 800; color: var(--primary); 
-            letter-spacing: -1px; display: flex; align-items: center;
-            text-decoration: none;
-        }
-        .logo span { color: var(--accent); margin-left: 2px; }
-        .menu a {
-            text-decoration: none; color: var(--text-main);
-            margin-left: 40px; font-weight: 500; font-size: 0.95rem;
-            transition: var(--transition); position: relative;
-        }
-        .menu a:hover { color: var(--accent); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+        font-family: 'Inter', 'Noto Sans KR', sans-serif; 
+        color: var(--text-main); 
+        line-height: 1.7; 
+        background-color: var(--white);
+        overflow-x: hidden;
+    }
 
-        /* --- Hero Visual --- */
-        .visual {
-            height: 75vh; min-height: 550px;
-            background: linear-gradient(135deg, rgba(30, 32, 34, 0.9) 0%, rgba(44, 46, 48, 0.7) 100%),
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; color: var(--white); text-align: center;
-            padding: 90px 20px 0 20px; position: relative;
-        }
-        .visual h1 { 
-            font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 800; 
-            margin-bottom: 20px; letter-spacing: -2px; line-height: 1.1;
-        }
-        .visual p { font-size: 1.25rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
-        .scroll-down {
-            position: absolute; bottom: 30px; animation: bounce 2s infinite;
-            font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;
-        }
+    /* --- Navigation --- */
+    nav {
+        position: fixed; top: 0; width: 100%; height: 90px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 8%; z-index: 1000;
+        transition: var(--transition);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .logo { 
+        font-size: 1.8rem; font-weight: 800; color: var(--primary); 
+        letter-spacing: -1px; display: flex; align-items: center;
+        text-decoration: none;
+    }
+    .logo span { color: var(--accent); margin-left: 2px; }
+    .menu a {
+        text-decoration: none; color: var(--text-main);
+        margin-left: 40px; font-weight: 500; font-size: 0.95rem;
+        transition: var(--transition); position: relative;
+    }
+    .menu a:hover { color: var(--accent); }
+    .menu a::after {
+        content: ''; position: absolute; bottom: -5px; left: 0;
+        width: 0; height: 2px; background: var(--accent);
+        transition: var(--transition);
+    }
+    .menu a:hover::after { width: 100%; }
 
-        /* --- Section Commons --- */
-        section { padding: 120px 0; }
-        .content { max-width: 1240px; margin: auto; padding: 0 30px; }
-        .sec-title { margin-bottom: 60px; }
-        .sec-title h2 { 
-            font-size: clamp(2rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 20px; font-weight: 700;
-        }
-        .sec-title .bar { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
+    /* --- Hero Visual --- */
+    .visual {
+        height: 75vh;
+        min-height: 550px;
+        background: linear-gradient(135deg, rgba(30, 32, 34, 0.9) 0%, rgba(44, 46, 48, 0.7) 100%),
+                    url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');
+        background-size: cover; 
+        background-position: center;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center; 
+        color: var(--white); 
+        text-align: center;
+        padding: 90px 20px 0 20px;
+        position: relative;
+    }
+    .visual h1 { 
+        font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 800; 
+        margin-bottom: 20px; letter-spacing: -2px; line-height: 1.1;
+    }
+    .visual p { font-size: 1.25rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
+    .scroll-down {
+        position: absolute; bottom: 30px; animation: bounce 2s infinite;
+        font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;
+    }
 
-        /* --- Profile Section --- */
-        .profile-section { background: var(--gray-light); }
-        .profile-grid {
-            display: grid; grid-template-columns: 1fr 1.1fr; 
-            gap: 60px; align-items: stretch;
-        }
-        .profile-card {
-            background: var(--white); padding: 50px; border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            border-left: 10px solid var(--accent);
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .profile-card h3 { font-size: 2.1rem; margin-bottom: 25px; color: var(--primary); line-height: 1.4; word-break: keep-all; }
-        .vision-container { display: flex; flex-direction: column; gap: 20px; }
-        .vision-item {
-            flex: 1; padding: 35px; border-radius: 24px; background: var(--white); 
-            border: 1px solid rgba(0,0,0,0.05); transition: var(--transition);
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .vision-item:first-child { border-bottom: 4px solid var(--sub-point); }
-        .vision-item:last-child { background: var(--primary); color: var(--white); }
-        .vision-item strong { display: block; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; color: var(--accent); }
-        .vision-item p { font-size: 1.2rem; font-weight: 600; margin: 0; word-break: keep-all; }
+    /* --- Section Commons --- */
+    section { padding: 120px 0; }
+    .content { max-width: 1240px; margin: auto; padding: 0 30px; }
+    .sec-title { margin-bottom: 60px; }
+    .sec-title h2 { 
+        font-size: clamp(2rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 20px; font-weight: 700;
+    }
+    .sec-title .bar { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
 
-        /* --- Business Section --- */
-        .biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .biz-item {
-            padding: 50px 40px; background: var(--white); border: 1px solid #e5e7eb;
-            border-radius: 28px; transition: var(--transition); position: relative; overflow: hidden;
-        }
-        .biz-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        .biz-item::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0;
-            background: var(--primary); transition: var(--transition); z-index: 0;
-        }
-        .biz-item:hover::before { height: 100%; }
-        .biz-item:hover * { color: var(--white) !important; position: relative; z-index: 1; }
-        .biz-item .icon { font-size: 3rem; font-weight: 800; margin-bottom: 25px; color: var(--accent); line-height: 1; }
-        .biz-item h3 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
+    /* --- Profile Section --- */
+    .profile-section { background: var(--gray-light); }
+    .profile-grid {
+        display: grid; 
+        grid-template-columns: 1fr 1.1fr; 
+        gap: 60px; 
+        align-items: stretch;
+    }
+    .profile-card {
+        background: var(--white); 
+        padding: clamp(30px, 5%, 50px); 
+        border-radius: 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        border-left: 10px solid var(--accent);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .profile-card h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 25px; color: var(--primary); line-height: 1.4; word-break: keep-all; }
+    .profile-card p { color: var(--text-sub); font-size: 1.05rem; margin-bottom: 35px; word-break: keep-all; }
+    
+    .vision-container { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 20px; 
+    }
+    .vision-item {
+        flex: 1;
+        padding: 35px; 
+        border-radius: 24px; 
+        background: var(--white); 
+        border: 1px solid rgba(0,0,0,0.05); 
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .vision-item:first-child { border-bottom: 4px solid var(--sub-point); }
+    .vision-item:last-child { background: var(--primary); color: var(--white); }
+    .vision-item strong { display: block; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
+    .vision-item p { font-size: 1.2rem; font-weight: 600; margin: 0; word-break: keep-all; }
 
-        /* --- System Architecture --- */
-        .system-flow-card {
-            background: var(--white); padding: 40px; border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
-            border-top: 5px solid var(--accent);
-        }
-        .flow-grid {
-            display: flex; justify-content: space-around; align-items: center; text-align: center; gap: 20px;
-        }
-        .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    /* --- Business Section --- */
+    .biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .biz-item {
+        padding: 50px 40px; background: var(--white); border: 1px solid #e5e7eb;
+        border-radius: 28px; transition: var(--transition); position: relative; 
+        overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+    .biz-item::after {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+        background: linear-gradient(to right, var(--accent), var(--sub-point));
+        opacity: 0.4;
+    }
+    .biz-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+    .biz-item::before {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0;
+        background: var(--primary); transition: var(--transition); z-index: 0;
+    }
+    .biz-item:hover::before { height: 100%; }
+    .biz-item:hover * { color: var(--white) !important; position: relative; z-index: 1; }
+    
+    .biz-item .icon { 
+        font-size: 3rem; font-weight: 800; margin-bottom: 25px; display: block;
+        color: var(--accent); font-family: 'Inter'; line-height: 1;
+    }
+    .biz-item h3 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
+    .biz-item p { color: var(--text-sub); font-size: 0.95rem; }
 
-        /* --- Reference Section --- */
-        .ref-section { background: #1a1c1e; color: var(--white); }
-        .ref-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .ref-group {
-            background: rgba(255,255,255,0.03); border-radius: 24px; padding: 40px;
-            border: 1px solid rgba(255,255,255,0.08); transition: var(--transition);
-        }
-        .ref-item-list { list-style: none; margin-bottom: 30px; }
-        .ref-item-list li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; opacity: 0.7; }
-        .ref-image-wrap { width: 100%; height: 180px; border-radius: 15px; overflow: hidden; filter: grayscale(100%); opacity: 0.5; }
-        .ref-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    /* --- System Architecture --- */
+    .system-flow-card {
+        background: var(--white); padding: 40px; border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
+        border-top: 5px solid var(--accent);
+    }
+    .flow-grid {
+        display: flex; justify-content: space-around; align-items: center; 
+        text-align: center; gap: 20px;
+    }
+    .flow-node h4 { font-size: 1.1rem; color: var(--primary); margin-bottom: 8px; }
+    .flow-node span { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+    .flow-arrow { color: var(--sub-point); font-weight: bold; font-size: 1.2rem; }
 
-        /* --- Footer --- */
-        footer { background: #0f1113; color: #a1a1aa; padding: 80px 0 40px; }
-        .footer-top { display: flex; justify-content: space-between; gap: 40px; margin-bottom: 60px; }
-        .f-logo { font-size: 2rem; font-weight: 800; color: var(--white); text-decoration: none; }
-        .f-logo span { color: var(--accent); }
-        .footer-contact { display: flex; gap: 60px; }
+    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 
-        /* ============================================================
-           MOBILE OPTIMIZATION (핵심 수정 구간)
-           ============================================================ */
+    /* --- Reference Section --- */
+    .ref-section { background: #1a1c1e; color: var(--white); }
+    .ref-section .sec-title h2 { color: var(--white); }
+    .ref-container {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+    }
+    .ref-group {
+        background: rgba(255,255,255,0.03); border-radius: 24px; padding: 40px;
+        border: 1px solid rgba(255,255,255,0.08); height: 100%;
+        display: flex; flex-direction: column; transition: var(--transition);
+    }
+    .ref-group:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); border-color: var(--accent); }
+    .badge {
+        display: inline-block; padding: 6px 16px; background: rgba(197, 160, 89, 0.15);
+        color: var(--accent); border: 1px solid var(--accent); border-radius: 50px; 
+        font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;
+    }
+    .ref-header h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; }
+    .ref-item-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+    .ref-item-list li {
+        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.9rem; opacity: 0.7; display: flex; align-items: center;
+    }
+    .ref-item-list li::before {
+        content: '✓'; margin-right: 12px; color: var(--accent); font-weight: bold;
+    }
+    .ref-image-wrap {
+        width: 100%; height: 180px; border-radius: 15px; overflow: hidden;
+        filter: grayscale(100%); transition: var(--transition); opacity: 0.5;
+    }
+    .ref-group:hover .ref-image-wrap { filter: grayscale(0%); opacity: 1; }
+    .ref-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-        @media (max-width: 1024px) {
-            .biz-grid, .ref-container { grid-template-columns: repeat(2, 1fr); }
-            .profile-grid { gap: 30px; }
-        }
+    /* --- Advanced Footer --- */
+    footer {
+        background: #0f1113; 
+        color: #a1a1aa; 
+        padding: 100px 0 60px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .footer-top {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 80px; flex-wrap: wrap; gap: 40px;
+    }
+    .footer-brand .f-logo {
+        font-size: 2rem; font-weight: 800; color: var(--white);
+        letter-spacing: -1px; margin-bottom: 15px; display: block; text-decoration: none;
+    }
+    .footer-brand .f-logo span { color: var(--accent); }
+    .footer-brand .f-slogan { font-size: 0.95rem; font-weight: 300; letter-spacing: 1px; opacity: 0.6; }
 
-        @media (max-width: 768px) {
-            nav { height: 70px; padding: 0 5%; }
-            .menu { display: none; }
-            section { padding: 70px 0; }
-            .content { padding: 0 20px; }
+    .footer-contact { display: grid; grid-template-columns: repeat(2, auto); gap: 60px; }
+    .contact-item strong {
+        display: block; color: var(--accent); font-size: 0.75rem;
+        letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;
+    }
+    .contact-item p { color: #e4e4e7; font-size: 1rem; font-weight: 400; }
+    .contact-item a { color: #e4e4e7; text-decoration: none; transition: var(--transition); }
+    .contact-item a:hover { color: var(--accent); }
 
-            /* Hero */
-            .visual { height: 60vh; min-height: 450px; }
-            .visual h1 { font-size: 2.2rem; }
+    .footer-bottom {
+        padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex; justify-content: space-between; align-items: center;
+        flex-wrap: wrap; gap: 20px;
+    }
+    .footer-bottom .copyright { font-size: 0.85rem; opacity: 0.4; }
+    .footer-bottom .company-info { font-size: 0.85rem; opacity: 0.6; display: flex; gap: 20px; }
 
-            /* Profile & Vision - 1열 배치 및 여백 축소 */
-            .profile-grid { grid-template-columns: 1fr; }
-            .profile-card { padding: 35px 25px; }
-            .profile-card h3 { font-size: 1.6rem; }
-            .vision-item { padding: 25px; }
-            .vision-item p { font-size: 1.1rem; }
+    /* ============================================================
+       MOBILE OPTIMIZATION (이 부분에 길쭉함 해결 핵심 코드가 들어있습니다)
+       ============================================================ */
+    @media (max-width: 900px) {
+        nav { padding: 0 5%; height: 75px; }
+        .menu { display: none; } 
+        section { padding: 70px 0; } /* 섹션 상하 여백 축소 */
+        .content { padding: 0 20px; }
 
-            /* Business - 1열 배치 */
-            .biz-grid { grid-template-columns: 1fr; gap: 20px; }
-            .biz-item { padding: 35px 25px; }
+        .visual { height: 60vh; min-height: 400px; }
+        .visual h1 { font-size: 2.2rem; }
 
-            /* System Flow - 세로형 흐름으로 변경 */
-            .flow-grid { flex-direction: column; gap: 15px; }
-            .flow-arrow { transform: rotate(90deg); margin: 5px 0; }
-            .process-grid { grid-template-columns: 1fr; }
+        .profile-grid { grid-template-columns: 1fr; gap: 30px; }
+        .profile-card { padding: 35px 25px; }
+        .vision-item { padding: 25px; }
+        
+        .biz-grid { grid-template-columns: 1fr; gap: 20px; } /* 1열로 변경하여 가독성 확보 */
+        .biz-item { padding: 35px 25px; }
 
-            /* Reference - 이미지 높이 조절로 세로 길이 단축 */
-            .ref-container { grid-template-columns: 1fr; }
-            .ref-group { padding: 30px 20px; }
-            .ref-image-wrap { height: 150px; }
+        /* 시스템 플로우 세로 정렬 */
+        .flow-grid { flex-direction: column; gap: 10px; }
+        .flow-arrow { transform: rotate(90deg); margin: 5px 0; }
+        .process-grid { grid-template-columns: 1fr; gap: 20px; }
 
-            /* Footer */
-            .footer-top { flex-direction: column; text-align: left; }
-            .footer-contact { flex-direction: column; gap: 30px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
-        }
+        .ref-container { grid-template-columns: 1fr; gap: 20px; }
+        .ref-group { padding: 30px 20px; }
+        .ref-image-wrap { height: 140px; } /* 이미지 높이 축소로 전체 길이 단축 */
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-    </style>
+        .footer-top { flex-direction: column; margin-bottom: 40px; }
+        .footer-contact { grid-template-columns: 1fr; gap: 30px; }
+        .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-10px);}
+        60% {transform: translateY(-5px);}
+    }
+</style>
+
 </head>
+
 <body>
 
+
+
 <nav>
+
     <a href="#" class="logo">ZERO<span>TO</span>BE</a>
+
     <div class="menu">
+
         <a href="#about">About</a>
+
         <a href="#business">Business</a>
+
         <a href="#system">System</a>
+
         <a href="#reference">Reference</a>
+
     </div>
+
 </nav>
 
+
+
 <div class="visual">
-    <div data-aos="fade-up">
+
+    <div data-aos="fade-up" data-aos-duration="1000">
+
         <h1>ZEROTOBE<br>Smart Logistics.</h1>
+
         <p>From Zero. To be.<br><strong>현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</strong></p>
+
     </div>
+
     <div class="scroll-down">SCROLL EXPLORE</div>
+
 </div>
 
+
+
 <section class="profile-section" id="about">
+
     <div class="content">
+
         <div class="profile-grid">
+
             <div class="profile-card" data-aos="fade-right">
+
                 <div class="sec-title">
+
                     <h2>Company Profile</h2>
+
                     <div class="bar"></div>
+
                 </div>
+
                 <h3>고객과 함께 성장하며<br>내일을 설계하는 파트너</h3>
-                <p style="color: var(--text-sub); font-size: 1rem; margin-bottom: 30px; word-break: keep-all;">
-                    단순한 IT 지원을 넘어 <strong>고객의 비즈니스 내일을 함께 설계하는</strong> 신뢰받는 파트너가 되겠습니다. 현장의 복잡한 프로세스를 디지털 혁신으로 최적화합니다.
+
+                <p>
+
+                    우리는 작은 팀으로 시작했지만, 고객과 함께 성장하여 지금의 회사를 이루었습니다. 
+
+                    이제 단순한 IT 지원을 넘어 <strong>고객의 비즈니스 내일을 함께 설계하는</strong> 
+
+                    신뢰받는 회사가 되겠습니다. 현장의 복잡한 프로세스를 디지털 혁신으로 최적화합니다.
+
                 </p>
-                <div style="font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; font-size: 0.9rem;">
+
+                <div style="font-weight: 700; color: var(--accent); display: inline-flex; align-items: center;">
+
                     <span style="width: 20px; height: 2px; background: var(--accent); margin-right: 10px;"></span>
+
                     Smart Logistics IT Partner
+
                 </div>
+
             </div>
+
             <div class="vision-container" data-aos="fade-left">
+
                 <div class="vision-item">
+
                     <strong>OUR MISSION</strong>
+
                     <p>현장의 복잡한 프로세스를 가장 명쾌한 실전형 시스템으로 구현합니다.</p>
+
                 </div>
+
                 <div class="vision-item">
+
                     <strong>OUR VISION</strong>
+
                     <p>고객과 함께 현장에서 호흡하며, 물류 IT의 살아있는 정석을 증명합니다.</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
+
+
 
 <section id="business">
+
     <div class="content">
+
         <div class="sec-title" data-aos="fade-up">
+
             <h2>Main Business</h2>
+
             <div class="bar"></div>
+
         </div>
+
         <div class="biz-grid">
-            <div class="biz-item" data-aos="fade-up">
-                <span class="icon">01</span>
-                <h3>물류관리 솔루션</h3>
-                <p style="font-size: 0.95rem; color: var(--text-sub);">WMS, WCS, PDA 기반 실시간 재고 관리 및 데이터 분석을 통한 효율 극대화</p>
-            </div>
+
             <div class="biz-item" data-aos="fade-up" data-aos-delay="100">
-                <span class="icon">02</span>
-                <h3>유통/주문관리</h3>
-                <p style="font-size: 0.95rem; color: var(--text-sub);">OMS 주문 통합 관리 및 DMS 수입유통 전산화 솔루션으로 정확한 흐름 제어</p>
+
+                <span class="icon">01</span>
+
+                <h3>물류관리 솔루션</h3>
+
+                <p>WMS, WCS, PDA 기반 실시간 재고 관리 및 데이터 분석을 통한 물류 운영 효율 극대화</p>
+
             </div>
+
             <div class="biz-item" data-aos="fade-up" data-aos-delay="200">
-                <span class="icon">03</span>
-                <h3>자동화 & AI</h3>
-                <p style="font-size: 0.95rem; color: var(--text-sub);">ACR 로봇 연동 및 스마트 자동화 설비(DAS/Sorter) 제어 맞춤형 솔루션</p>
+
+                <span class="icon">02</span>
+
+                <h3>유통/주문관리</h3>
+
+                <p>OMS 주문 통합 관리 시스템 및 DMS 수입유통 전산화 솔루션으로 정확한 유통 흐름 제어</p>
+
             </div>
+
+            <div class="biz-item" data-aos="fade-up" data-aos-delay="300">
+
+                <span class="icon">03</span>
+
+                <h3>물류자동화</h3>
+
+                <p>ACR 로봇 연동 기술 및 스마트 자동화 설비(DAS/Sorter) 제어를 위한 맞춤형 WCS 공급</p>
+
+            </div>
+
         </div>
+
     </div>
+
 </section>
+
+
 
 <section id="system" style="background-color: var(--gray-light);">
+
     <div class="content">
+
         <div class="sec-title" data-aos="fade-up">
+
             <h2>System Architecture</h2>
+
             <div class="bar"></div>
+
+            <p style="margin-top:20px; color:var(--text-sub);">기간계 시스템 연동부터 현장 자동화 설비 제어까지, 통합 프로세스를 구축합니다.</p>
+
         </div>
+
+
 
         <div class="system-flow-card" data-aos="zoom-in">
+
             <div class="flow-grid">
+
                 <div class="flow-node">
-                    <h4 style="font-size: 1rem;">ERP System</h4>
-                    <span style="font-size: 0.8rem; color: var(--accent);">입/출고 예정 정보</span>
+
+                    <h4>ERP System</h4>
+
+                    <span>입/출고 예정 정보</span>
+
                 </div>
+
                 <div class="flow-arrow">▶</div>
-                <div class="flow-node" style="padding: 15px 25px; background: var(--primary); border-radius: 15px;">
-                    <h4 style="color: var(--point); font-size: 1.1rem;">WMS / WCS</h4>
-                    <span style="color: var(--white); opacity: 0.8; font-size: 0.75rem;">Smart Management</span>
+
+                <div class="flow-node" style="padding: 20px 30px; background: var(--primary); border-radius: 15px;">
+
+                    <h4 style="color: var(--point); font-size: 1.3rem;">WMS / WCS</h4>
+
+                    <span style="color: var(--white); opacity: 0.8;">Smart Management</span>
+
                 </div>
+
                 <div class="flow-arrow">◀▶</div>
+
                 <div class="flow-node">
-                    <h4 style="font-size: 1rem;">H/W Interface</h4>
-                    <span style="font-size: 0.8rem; color: var(--accent);">PLC / BCR / RFID</span>
+
+                    <h4>H/W Interface</h4>
+
+                    <span>PLC / BCR / RFID</span>
+
                 </div>
+
             </div>
+
         </div>
+
+
 
         <div class="process-grid">
+
             <div class="vision-item" data-aos="fade-right" style="border-bottom: 4px solid var(--accent);">
-                <strong>INBOUND</strong>
-                <p style="font-size: 1.1rem; margin-bottom: 10px; color: var(--primary);">입고 및 적치 관리</p>
-                <ul style="list-style: none; font-size: 0.85rem; color: var(--text-main);">
-                    <li>• 검수 실적 실시간 수신</li>
-                    <li>• ACR 연동 최적 적치 관리</li>
+
+                <strong>INBOUND PROCESS</strong>
+
+                <p style="font-size: 1.3rem; margin-bottom: 15px; color: var(--primary);">입고 예정 및 적치 관리</p>
+
+                <ul style="list-style: none; font-size: 0.95rem; color: var(--text-main);">
+
+                    <li style="margin-bottom: 10px;">• 입고 검수지시 및 검수 실적 실시간 수신</li>
+
+                    <li style="margin-bottom: 10px;">• RFID 검수박스별 목적지 이동지시 제어</li>
+
+                    <li style="margin-bottom: 10px;">• ACR(로봇) 연동 최적 적치지시 및 실적 관리</li>
+
                 </ul>
+
             </div>
+
+
+
             <div class="vision-item" data-aos="fade-left" style="background: var(--secondary); color: white;">
-                <strong style="color: var(--accent);">OUTBOUND</strong>
-                <p style="font-size: 1.1rem; margin-bottom: 10px;">출고 및 분류 최적화</p>
-                <ul style="list-style: none; font-size: 0.85rem; opacity: 0.9;">
-                    <li>• PDA 실시간 피킹 실적</li>
-                    <li>• BCR 기반 자동 분류 제어</li>
+
+                <strong style="color: var(--accent);">OUTBOUND PROCESS</strong>
+
+                <p style="font-size: 1.3rem; margin-bottom: 15px;">출고 피킹 및 분류 최적화</p>
+
+                <ul style="list-style: none; font-size: 0.95rem; opacity: 0.9;">
+
+                    <li style="margin-bottom: 10px;">• 피킹지시 및 PDA 실시간 피킹 실적 수신</li>
+
+                    <li style="margin-bottom: 10px;">• BCR 기반 목적지 이동 및 유형별 분류 제어</li>
+
+                    <li style="margin-bottom: 10px;">• 오토라벨러 인터페이스 및 운송장 정보 송신</li>
+
                 </ul>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
+
+
 
 <section class="ref-section" id="reference">
+
     <div class="content">
+
         <div class="sec-title" data-aos="fade-up">
+
             <h2>Major Reference</h2>
+
             <div class="bar"></div>
+
         </div>
+
         <div class="ref-container">
-            <div class="ref-group" data-aos="zoom-in">
-                <span style="color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">WMS / AUTOMATION</span>
-                <h3 style="font-size: 1.3rem; margin: 10px 0 20px;">WMS 솔루션 구축</h3>
-                <ul class="ref-item-list">
-                    <li>로지스밸리 SLK / 네파 자동화센터</li>
-                    <li>롯데면세점 / 씨젠 의료물류</li>
-                </ul>
-                <div class="ref-image-wrap">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehouse">
-                </div>
-            </div>
+
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="100">
-                <span style="color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">OMS / DISTRIBUTION</span>
-                <h3 style="font-size: 1.3rem; margin: 10px 0 20px;">유통망 관리 시스템</h3>
-                <ul class="ref-item-list">
-                    <li>이마트 24 권고발주 시스템</li>
-                    <li>투데이칩스 / SAMT 반도체 유통</li>
-                </ul>
-                <div class="ref-image-wrap">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Data">
+
+                <div class="ref-header">
+
+                    <span class="badge">WMS / Automation</span>
+
+                    <h3>WMS 솔루션/구축</h3>
+
                 </div>
+
+                <ul class="ref-item-list">
+
+                    <li>로지스밸리 SLK</li>
+
+                    <li>네파(NEPA) 평택 센터 자동화센터</li>
+
+                    <li>롯데면세점 통합 물류 인터페이스</li>
+
+                    <li>씨젠 의료물류 관리 솔루션</li>
+
+                    <li>SAMT 반도체 재고관리 시스템</li>
+
+                </ul>
+
+                <div class="ref-image-wrap">
+
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehouse">
+
+                </div>
+
             </div>
+
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="200">
-                <span style="color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">INTERFACE</span>
-                <h3 style="font-size: 1.3rem; margin: 10px 0 20px;">물류 자동화 제어</h3>
-                <ul class="ref-item-list">
-                    <li>AMR/ACR 로봇 적치 시뮬레이션</li>
-                    <li>DAS / RFID / BCR 설비 제어</li>
-                </ul>
-                <div class="ref-image-wrap">
-                    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" alt="Robot">
+
+                <div class="ref-header">
+
+                    <span class="badge">OMS / Distribution</span>
+
+                    <h3>유통망 관리 시스템</h3>
+
                 </div>
+
+                <ul class="ref-item-list">
+
+                    <li>이마트 24 점포 권고발주 시스템</li>
+
+                    <li>투데이 칩스 반도체 유통관리</li>
+
+                    <li>SAMT 반도체 유통 ERP 연동</li>
+
+                    <li>한국초저온 콜드체인</li>
+
+                    <li>소프트팩 주문관리시스템</li>
+
+                </ul>
+
+                <div class="ref-image-wrap">
+
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Data">
+
+                </div>
+
             </div>
+
+            <div class="ref-group" data-aos="zoom-in" data-aos-delay="300">
+
+                <div class="ref-header">
+
+                    <span class="badge">Solution Interface</span>
+
+                    <h3>물류자동화</h3>
+
+                </div>
+
+                <ul class="ref-item-list">
+
+                    <li>자동화센터 데이터관리/제어</li>
+
+                    <li>AMR/ACR 로봇 적치/피킹 시뮬레이션</li>
+
+                    <li>SMS / DAS / RFID / BCR 자동화 설비 제어</li>
+
+                    <li>컨베이어 라인분기(BCR)</li>
+
+                </ul>
+
+                <div class="ref-image-wrap">
+
+                    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" alt="Robot">
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
+
 </section>
 
+
+
 <footer>
+
     <div class="content">
+
         <div class="footer-top">
+
             <div class="footer-brand">
+
                 <a href="#" class="f-logo">ZERO<span>TO</span>BE</a>
-                <p style="font-size: 0.85rem; margin-top: 10px; opacity: 0.6;">현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</p>
+
+                <p class="f-slogan">현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</p>
+
             </div>
+
+            
+
             <div class="footer-contact">
+
                 <div class="contact-item">
-                    <strong style="color: var(--accent); font-size: 0.7rem; letter-spacing: 1px;">CONTACT</strong>
-                    <p style="font-size: 0.9rem; margin-top: 5px;"><a href="mailto:zerotobe@kakao.com" style="color: #e4e4e7; text-decoration: none;">zerotobe@kakao.com</a></p>
-                    <p style="font-size: 0.9rem;">대표이사 장원봉</p>
+
+                    <strong>Contact</strong>
+
+                    <p><a href="mailto:zerotobe@kakao.com">zerotobe@kakao.com</a></p>
+
+                    <p>대표이사 장원봉</p>
+
                 </div>
+
                 <div class="contact-item">
-                    <strong style="color: var(--accent); font-size: 0.7rem; letter-spacing: 1px;">LOCATION</strong>
-                    <p style="font-size: 0.9rem; margin-top: 5px;">경기도 남양주시 퇴계원로 91번길 25</p>
+
+                    <strong>Location</strong>
+
+                    <p>경기도 남양주시 퇴계원로 91번길 25</p>
+
+                    <p>KR-Office, Namyangju</p>
+
                 </div>
+
             </div>
+
         </div>
-        <div class="footer-bottom" style="padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); display: flex; justify-content: space-between; font-size: 0.75rem; opacity: 0.4;">
-            <p>&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
-            <p>Smart Logistics IT Solution</p>
+
+
+
+        <div class="footer-bottom">
+
+            <p class="copyright">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
+
+            <div class="company-info">
+
+                <span></span>
+
+                <span>Smart Logistics IT Solution</span>
+
+            </div>
+
         </div>
+
     </div>
+
 </footer>
 
+
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
+
     AOS.init({
-        duration: 800,
+
+        duration: 1000,
+
         once: true,
-        offset: 50 // 모바일에서 너무 늦게 나타나지 않도록 오프셋 조절
+
+        offset: 120
+
     });
+
 </script>
 
+
+
 </body>
+
 </html>
