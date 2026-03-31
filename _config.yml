@@ -1,7 +1,10 @@
 url: "https://zerotobe.com"
-title: "제로투비(ZEROTOBE)"
-description: "스마트한 물류시스템의 시작"
+title: "제로투비(ZEROTOBE) | 스마트물류 시스템 및 소프트웨어 개발 전문"
+description: "기업용 WMS 솔루션, 물류전문 기업 제로투비(ZEROTOBE)입니다."
 author: "장원봉"
 lang: "ko-KR"
+
+# SEO 최적화를 위해 필수적인 플러그인 추가
 plugins:
   - jekyll-sitemap
+  - jekyll-seo-tag # 이 플러그인이 매우 중요합니다!
