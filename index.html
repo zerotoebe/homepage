@@ -3,359 +3,346 @@
 <html lang="ko">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>제로투비(ZEROTOBE) | 소프트웨어 개발 및 WMS 솔루션 기업</title>
-	
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	 <style>
+		:root {
+			--primary: #1e2022;        /* 중후한 차콜 블랙 */
+			--secondary: #2c2e30;
+			--accent: #c5a059;          /* 하이엔드 샌드 골드 */
+			--point: #d4af37;            /* 클래식 골드 */
+			--sub-point: #a8a29e;      /* 웜 그레이 */
+			--text-main: #2d2d2d;
+			--text-sub: #6b7280;
+			--white: #ffffff;
+			--gray-light: #f4f4f2;
+			--transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		}
 
- <style>
-    :root {
-        --primary: #1e2022;        /* 중후한 차콜 블랙 */
-        --secondary: #2c2e30;
-        --accent: #c5a059;          /* 하이엔드 샌드 골드 */
-        --point: #d4af37;            /* 클래식 골드 */
-        --sub-point: #a8a29e;      /* 웜 그레이 */
-        --text-main: #2d2d2d;
-        --text-sub: #6b7280;
-        --white: #ffffff;
-        --gray-light: #f4f4f2;
-        --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { 
+			font-family: 'Inter', 'Noto Sans KR', sans-serif; 
+			color: var(--text-main); 
+			line-height: 1.7; 
+			background-color: var(--white);
+			overflow-x: hidden;
+		}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { 
-        font-family: 'Inter', 'Noto Sans KR', sans-serif; 
-        color: var(--text-main); 
-        line-height: 1.7; 
-        background-color: var(--white);
-        overflow-x: hidden;
-    }
+		/* --- Navigation --- */
+		nav {
+			position: fixed; top: 0; width: 100%; height: 90px;
+			background: rgba(255, 255, 255, 0.98);
+			backdrop-filter: blur(10px);
+			display: flex; align-items: center; justify-content: space-between;
+			padding: 0 8%; z-index: 1000;
+			transition: var(--transition);
+			border-bottom: 1px solid rgba(0,0,0,0.08);
+		}
+		.logo { 
+			font-size: 1.8rem; font-weight: 800; color: var(--primary); 
+			letter-spacing: -1px; display: flex; align-items: center;
+			text-decoration: none;
+		}
+		.logo span { color: var(--accent); margin-left: 2px; }
+		.menu a {
+			text-decoration: none; color: var(--text-main);
+			margin-left: 40px; font-weight: 500; font-size: 0.95rem;
+			transition: var(--transition); position: relative;
+		}
+		.menu a:hover { color: var(--accent); }
+		.menu a::after {
+			content: ''; position: absolute; bottom: -5px; left: 0;
+			width: 0; height: 2px; background: var(--accent);
+			transition: var(--transition);
+		}
+		.menu a:hover::after { width: 100%; }
 
-    /* --- Navigation --- */
-    nav {
-        position: fixed; top: 0; width: 100%; height: 90px;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 8%; z-index: 1000;
-        transition: var(--transition);
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-    .logo { 
-        font-size: 1.8rem; font-weight: 800; color: var(--primary); 
-        letter-spacing: -1px; display: flex; align-items: center;
-        text-decoration: none;
-    }
-    .logo span { color: var(--accent); margin-left: 2px; }
-    .menu a {
-        text-decoration: none; color: var(--text-main);
-        margin-left: 40px; font-weight: 500; font-size: 0.95rem;
-        transition: var(--transition); position: relative;
-    }
-    .menu a:hover { color: var(--accent); }
-    .menu a::after {
-        content: ''; position: absolute; bottom: -5px; left: 0;
-        width: 0; height: 2px; background: var(--accent);
-        transition: var(--transition);
-    }
-    .menu a:hover::after { width: 100%; }
+		/* --- Hero Visual --- */
+		.visual {
+			height: 75vh;
+			min-height: 550px;
+			background: linear-gradient(135deg, rgba(30, 32, 34, 0.9) 0%, rgba(44, 46, 48, 0.7) 100%),
+						url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');
+			background-size: cover; 
+			background-position: center;
+			display: flex; 
+			flex-direction: column; 
+			justify-content: center;
+			align-items: center; 
+			color: var(--white); 
+			text-align: center;
+			padding: 90px 20px 0 20px;
+			position: relative;
+		}
+		.visual h1 { 
+			font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 800; 
+			margin-bottom: 20px; letter-spacing: -2px; line-height: 1.1;
+		}
+		.visual p { font-size: 1.25rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
+		.scroll-down {
+			position: absolute; bottom: 30px; animation: bounce 2s infinite;
+			font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;
+		}
 
-    /* --- Hero Visual --- */
-    .visual {
-        height: 75vh;
-        min-height: 550px;
-        background: linear-gradient(135deg, rgba(30, 32, 34, 0.9) 0%, rgba(44, 46, 48, 0.7) 100%),
-                    url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop');
-        background-size: cover; 
-        background-position: center;
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center;
-        align-items: center; 
-        color: var(--white); 
-        text-align: center;
-        padding: 90px 20px 0 20px;
-        position: relative;
-    }
-    .visual h1 { 
-        font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 800; 
-        margin-bottom: 20px; letter-spacing: -2px; line-height: 1.1;
-    }
-    .visual p { font-size: 1.25rem; font-weight: 300; opacity: 0.9; margin-bottom: 40px; }
-    .scroll-down {
-        position: absolute; bottom: 30px; animation: bounce 2s infinite;
-        font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;
-    }
+		/* --- Section Commons --- */
+		section { padding: 120px 0; }
+		.content { max-width: 1240px; margin: auto; padding: 0 30px; }
+		.sec-title { margin-bottom: 60px; }
+		.sec-title h2 { 
+			font-size: clamp(2rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 20px; font-weight: 700;
+		}
+		.sec-title .bar { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
 
-    /* --- Section Commons --- */
-    section { padding: 120px 0; }
-    .content { max-width: 1240px; margin: auto; padding: 0 30px; }
-    .sec-title { margin-bottom: 60px; }
-    .sec-title h2 { 
-        font-size: clamp(2rem, 4vw, 2.8rem); color: var(--primary); margin-bottom: 20px; font-weight: 700;
-    }
-    .sec-title .bar { width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
+		/* --- Profile Section --- */
+		.profile-section { background: var(--gray-light); }
+		.profile-grid {
+			display: grid; 
+			grid-template-columns: 1fr 1.1fr; 
+			gap: 60px; 
+			align-items: stretch;
+		}
+		.profile-card {
+			background: var(--white); 
+			padding: clamp(30px, 5%, 50px); 
+			border-radius: 30px;
+			box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+			border-left: 10px solid var(--accent);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.profile-card h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 25px; color: var(--primary); line-height: 1.4; word-break: keep-all; }
+		.profile-card p { color: var(--text-sub); font-size: 1.05rem; margin-bottom: 35px; word-break: keep-all; }
+		
+		.vision-container { 
+			display: flex; 
+			flex-direction: column; 
+			gap: 20px; 
+		}
+		.vision-item {
+			flex: 1;
+			padding: 35px; 
+			border-radius: 24px; 
+			background: var(--white); 
+			border: 1px solid rgba(0,0,0,0.05); 
+			transition: var(--transition);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.vision-item:first-child { border-bottom: 4px solid var(--sub-point); }
+		.vision-item:last-child { background: var(--primary); color: var(--white); }
+		.vision-item strong { display: block; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
+		.vision-item p { font-size: 1.2rem; font-weight: 600; margin: 0; word-break: keep-all; }
 
-    /* --- Profile Section --- */
-    .profile-section { background: var(--gray-light); }
-    .profile-grid {
-        display: grid; 
-        grid-template-columns: 1fr 1.1fr; 
-        gap: 60px; 
-        align-items: stretch;
-    }
-    .profile-card {
-        background: var(--white); 
-        padding: clamp(30px, 5%, 50px); 
-        border-radius: 30px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        border-left: 10px solid var(--accent);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .profile-card h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 25px; color: var(--primary); line-height: 1.4; word-break: keep-all; }
-    .profile-card p { color: var(--text-sub); font-size: 1.05rem; margin-bottom: 35px; word-break: keep-all; }
-    
-    .vision-container { 
-        display: flex; 
-        flex-direction: column; 
-        gap: 20px; 
-    }
-    .vision-item {
-        flex: 1;
-        padding: 35px; 
-        border-radius: 24px; 
-        background: var(--white); 
-        border: 1px solid rgba(0,0,0,0.05); 
-        transition: var(--transition);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .vision-item:first-child { border-bottom: 4px solid var(--sub-point); }
-    .vision-item:last-child { background: var(--primary); color: var(--white); }
-    .vision-item strong { display: block; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 12px; color: var(--accent); font-weight: 700; }
-    .vision-item p { font-size: 1.2rem; font-weight: 600; margin: 0; word-break: keep-all; }
+		/* --- Business Section --- */
+		.biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+		.biz-item {
+			padding: 50px 40px; background: var(--white); border: 1px solid #e5e7eb;
+			border-radius: 28px; transition: var(--transition); position: relative; 
+			overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+		}
+		.biz-item::after {
+			content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+			background: linear-gradient(to right, var(--accent), var(--sub-point));
+			opacity: 0.4;
+		}
+		.biz-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+		.biz-item::before {
+			content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0;
+			background: var(--primary); transition: var(--transition); z-index: 0;
+		}
+		.biz-item:hover::before { height: 100%; }
+		.biz-item:hover * { color: var(--white) !important; position: relative; z-index: 1; }
+		
+		.biz-item .icon { 
+			font-size: 3rem; font-weight: 800; margin-bottom: 25px; display: block;
+			color: var(--accent); font-family: 'Inter'; line-height: 1;
+		}
+		.biz-item h3 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
+		.biz-item p { color: var(--text-sub); font-size: 0.95rem; }
 
-    /* --- Business Section --- */
-    .biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .biz-item {
-        padding: 50px 40px; background: var(--white); border: 1px solid #e5e7eb;
-        border-radius: 28px; transition: var(--transition); position: relative; 
-        overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-    }
-    .biz-item::after {
-        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-        background: linear-gradient(to right, var(--accent), var(--sub-point));
-        opacity: 0.4;
-    }
-    .biz-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-    .biz-item::before {
-        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0;
-        background: var(--primary); transition: var(--transition); z-index: 0;
-    }
-    .biz-item:hover::before { height: 100%; }
-    .biz-item:hover * { color: var(--white) !important; position: relative; z-index: 1; }
-    
-    .biz-item .icon { 
-        font-size: 3rem; font-weight: 800; margin-bottom: 25px; display: block;
-        color: var(--accent); font-family: 'Inter'; line-height: 1;
-    }
-    .biz-item h3 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
-    .biz-item p { color: var(--text-sub); font-size: 0.95rem; }
+		/* --- System Architecture --- */
+		.system-flow-card {
+			background: var(--white); padding: 40px; border-radius: 24px;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
+			border-top: 5px solid var(--accent);
+		}
+		.flow-grid {
+			display: flex; justify-content: space-around; align-items: center; 
+			text-align: center; gap: 20px;
+		}
+		.flow-node h4 { font-size: 1.1rem; color: var(--primary); margin-bottom: 8px; }
+		.flow-node span { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+		.flow-arrow { color: var(--sub-point); font-weight: bold; font-size: 1.2rem; }
 
-    /* --- System Architecture --- */
-    .system-flow-card {
-        background: var(--white); padding: 40px; border-radius: 24px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 40px;
-        border-top: 5px solid var(--accent);
-    }
-    .flow-grid {
-        display: flex; justify-content: space-around; align-items: center; 
-        text-align: center; gap: 20px;
-    }
-    .flow-node h4 { font-size: 1.1rem; color: var(--primary); margin-bottom: 8px; }
-    .flow-node span { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
-    .flow-arrow { color: var(--sub-point); font-weight: bold; font-size: 1.2rem; }
+		.process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+		
+		.careers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+		.career-card { background: var(--white); padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; transition: var(--transition); display: flex; flex-direction: column; }
+		.career-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--accent); }
+		.career-card h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 10px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+		.career-status { font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; font-weight: 600; }
+		.status-active { background: rgba(197, 160, 89, 0.1); color: var(--accent); }
+		.status-pool { background: #f3f4f6; color: var(--text-sub); }
+		.career-desc { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 25px; }
+		.career-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
+		.career-tags span { background: var(--gray-light); color: var(--text-main); font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; font-weight: 500; }
+		.btn-apply { margin-top: auto; display: inline-block; text-align: center; background: var(--primary); color: var(--white); text-decoration: none; padding: 12px 0; border-radius: 12px; font-size: 0.95rem; font-weight: 500; transition: var(--transition); }
+		.btn-apply:hover { background: var(--accent); }	
 
-    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-	
-	.careers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-	.career-card { background: var(--white); padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; transition: var(--transition); display: flex; flex-direction: column; }
-	.career-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--accent); }
-	.career-card h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 10px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-	.career-status { font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; font-weight: 600; }
-	.status-active { background: rgba(197, 160, 89, 0.1); color: var(--accent); }
-	.status-pool { background: #f3f4f6; color: var(--text-sub); }
-	.career-desc { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 25px; }
-	.career-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
-	.career-tags span { background: var(--gray-light); color: var(--text-main); font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; font-weight: 500; }
-	.btn-apply { margin-top: auto; display: inline-block; text-align: center; background: var(--primary); color: var(--white); text-decoration: none; padding: 12px 0; border-radius: 12px; font-size: 0.95rem; font-weight: 500; transition: var(--transition); }
-	.btn-apply:hover { background: var(--accent); }	
+		/* --- Reference Section --- */
+		.ref-section { background: #1a1c1e; color: var(--white); }
+		.ref-section .sec-title h2 { color: var(--white); }
+		.ref-container {
+			display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+		}
+		.ref-group {
+			background: rgba(255,255,255,0.03); border-radius: 24px; padding: 40px;
+			border: 1px solid rgba(255,255,255,0.08); height: 100%;
+			display: flex; flex-direction: column; transition: var(--transition);
+		}
+		.ref-group:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); border-color: var(--accent); }
+		.badge {
+			display: inline-block; padding: 6px 16px; background: rgba(197, 160, 89, 0.15);
+			color: var(--accent); border: 1px solid var(--accent); border-radius: 50px; 
+			font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;
+		}
+		.ref-header h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; }
+		.ref-item-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+		.ref-item-list li {
+			padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+			font-size: 0.9rem; opacity: 0.7; display: flex; align-items: center;
+		}
+		.ref-item-list li::before {
+			content: '✓'; margin-right: 12px; color: var(--accent); font-weight: bold;
+		}
+		.ref-image-wrap {
+			width: 100%; height: 180px; border-radius: 15px; overflow: hidden;
+			filter: grayscale(100%); transition: var(--transition); opacity: 0.5;
+		}
+		.ref-group:hover .ref-image-wrap { filter: grayscale(0%); opacity: 1; }
+		.ref-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* --- Reference Section --- */
-    .ref-section { background: #1a1c1e; color: var(--white); }
-    .ref-section .sec-title h2 { color: var(--white); }
-    .ref-container {
-        display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
-    }
-    .ref-group {
-        background: rgba(255,255,255,0.03); border-radius: 24px; padding: 40px;
-        border: 1px solid rgba(255,255,255,0.08); height: 100%;
-        display: flex; flex-direction: column; transition: var(--transition);
-    }
-    .ref-group:hover { background: rgba(255,255,255,0.07); transform: translateY(-10px); border-color: var(--accent); }
-    .badge {
-        display: inline-block; padding: 6px 16px; background: rgba(197, 160, 89, 0.15);
-        color: var(--accent); border: 1px solid var(--accent); border-radius: 50px; 
-        font-size: 0.75rem; font-weight: 700; margin-bottom: 15px;
-    }
-    .ref-header h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 20px; }
-    .ref-item-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
-    .ref-item-list li {
-        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-        font-size: 0.9rem; opacity: 0.7; display: flex; align-items: center;
-    }
-    .ref-item-list li::before {
-        content: '✓'; margin-right: 12px; color: var(--accent); font-weight: bold;
-    }
-    .ref-image-wrap {
-        width: 100%; height: 180px; border-radius: 15px; overflow: hidden;
-        filter: grayscale(100%); transition: var(--transition); opacity: 0.5;
-    }
-    .ref-group:hover .ref-image-wrap { filter: grayscale(0%); opacity: 1; }
-    .ref-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+		/* --- Advanced Footer --- */
+		footer {
+			background: #0f1113; 
+			color: #a1a1aa; 
+			padding: 100px 0 60px;
+			border-top: 1px solid rgba(255, 255, 255, 0.05);
+		}
+		.footer-top {
+			display: flex; justify-content: space-between; align-items: flex-start;
+			margin-bottom: 80px; flex-wrap: wrap; gap: 40px;
+		}
+		.footer-brand .f-logo {
+			font-size: 2rem; font-weight: 800; color: var(--white);
+			letter-spacing: -1px; margin-bottom: 15px; display: block; text-decoration: none;
+		}
+		.footer-brand .f-logo span { color: var(--accent); }
+		.footer-brand .f-slogan { font-size: 0.95rem; font-weight: 300; letter-spacing: 1px; opacity: 0.6; }
 
-	/* --- Advanced Footer --- */
-    footer {
-        background: #0f1113; 
-        color: #a1a1aa; 
-        padding: 100px 0 60px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .footer-top {
-        display: flex; justify-content: space-between; align-items: flex-start;
-        margin-bottom: 80px; flex-wrap: wrap; gap: 40px;
-    }
-    .footer-brand .f-logo {
-        font-size: 2rem; font-weight: 800; color: var(--white);
-        letter-spacing: -1px; margin-bottom: 15px; display: block; text-decoration: none;
-    }
-    .footer-brand .f-logo span { color: var(--accent); }
-    .footer-brand .f-slogan { font-size: 0.95rem; font-weight: 300; letter-spacing: 1px; opacity: 0.6; }
+		.footer-contact { display: grid; grid-template-columns: repeat(2, auto); gap: 60px; }
+		
+		/* Contact, Location 타이틀(strong) 스타일 */
+		.contact-item strong {
+			display: block; 
+			color: var(--accent); 
+			font-size: 0.7rem; /* 기존 0.75rem에서 축소 */
+			letter-spacing: 2px; 
+			margin-bottom: 12px; 
+			text-transform: uppercase;
+			opacity: 0.9;
+		}
+		
+		/* 내부 텍스트(p, a) 스타일 수정: 크기 축소 및 색상 변경 */
+		.contact-item p { 
+			color: #71717a; /* 기존 #e4e4e7(밝은 회색)에서 한 단계 아래 회색으로 변경 */
+			font-size: 0.88rem; /* 기존 1rem에서 축소 */
+			font-weight: 400; 
+			line-height: 1.6;
+			margin-bottom: 4px;
+		}
+		.contact-item a { 
+			color: #71717a; /* 텍스트와 동일한 색상 적용 */
+			text-decoration: none; 
+			transition: var(--transition); 
+		}
+		.contact-item a:hover { color: var(--accent); }
 
-    .footer-contact { display: grid; grid-template-columns: repeat(2, auto); gap: 60px; }
-    
-    /* Contact, Location 타이틀(strong) 스타일 */
-    .contact-item strong {
-        display: block; 
-        color: var(--accent); 
-        font-size: 0.7rem; /* 기존 0.75rem에서 축소 */
-        letter-spacing: 2px; 
-        margin-bottom: 12px; 
-        text-transform: uppercase;
-        opacity: 0.9;
-    }
-    
-    /* 내부 텍스트(p, a) 스타일 수정: 크기 축소 및 색상 변경 */
-    .contact-item p { 
-        color: #71717a; /* 기존 #e4e4e7(밝은 회색)에서 한 단계 아래 회색으로 변경 */
-        font-size: 0.88rem; /* 기존 1rem에서 축소 */
-        font-weight: 400; 
-        line-height: 1.6;
-        margin-bottom: 4px;
-    }
-    .contact-item a { 
-        color: #71717a; /* 텍스트와 동일한 색상 적용 */
-        text-decoration: none; 
-        transition: var(--transition); 
-    }
-    .contact-item a:hover { color: var(--accent); }
+		.footer-bottom {
+			padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05);
+			display: flex; justify-content: space-between; align-items: center;
+			flex-wrap: wrap; gap: 20px;
+		}
+		.footer-bottom .copyright { font-size: 0.85rem; opacity: 0.4; }
+		.footer-bottom .company-info { font-size: 0.85rem; opacity: 0.6; display: flex; gap: 20px; }
 
-    .footer-bottom {
-        padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05);
-        display: flex; justify-content: space-between; align-items: center;
-        flex-wrap: wrap; gap: 20px;
-    }
-    .footer-bottom .copyright { font-size: 0.85rem; opacity: 0.4; }
-    .footer-bottom .company-info { font-size: 0.85rem; opacity: 0.6; display: flex; gap: 20px; }
+		/* ============================================================
+		   MOBILE OPTIMIZATION (이 부분에 길쭉함 해결 핵심 코드가 들어있습니다)
+		   ============================================================ */
+		@media (max-width: 900px) {
+			nav { padding: 0 5%; height: 75px; }
+			.menu { display: none; } 
+			section { padding: 70px 0; } /* 섹션 상하 여백 축소 */
+			.content { padding: 0 20px; }
 
-    /* ============================================================
-       MOBILE OPTIMIZATION (이 부분에 길쭉함 해결 핵심 코드가 들어있습니다)
-       ============================================================ */
-    @media (max-width: 900px) {
-        nav { padding: 0 5%; height: 75px; }
-        .menu { display: none; } 
-        section { padding: 70px 0; } /* 섹션 상하 여백 축소 */
-        .content { padding: 0 20px; }
+			.visual { height: 60vh; min-height: 400px; }
+			.visual h1 { font-size: 2.2rem; }
 
-        .visual { height: 60vh; min-height: 400px; }
-        .visual h1 { font-size: 2.2rem; }
+			.profile-grid { grid-template-columns: 1fr; gap: 30px; }
+			.profile-card { padding: 35px 25px; }
+			.vision-item { padding: 25px; }
+			
+			.biz-grid { grid-template-columns: 1fr; gap: 20px; } /* 1열로 변경하여 가독성 확보 */
+			.biz-item { padding: 35px 25px; }
 
-        .profile-grid { grid-template-columns: 1fr; gap: 30px; }
-        .profile-card { padding: 35px 25px; }
-        .vision-item { padding: 25px; }
-        
-        .biz-grid { grid-template-columns: 1fr; gap: 20px; } /* 1열로 변경하여 가독성 확보 */
-        .biz-item { padding: 35px 25px; }
+			/* 시스템 플로우 세로 정렬 */
+			.flow-grid { flex-direction: column; gap: 10px; }
+			.flow-arrow { transform: rotate(90deg); margin: 5px 0; }
+			.process-grid { grid-template-columns: 1fr; gap: 20px; }
 
-        /* 시스템 플로우 세로 정렬 */
-        .flow-grid { flex-direction: column; gap: 10px; }
-        .flow-arrow { transform: rotate(90deg); margin: 5px 0; }
-        .process-grid { grid-template-columns: 1fr; gap: 20px; }
+			.ref-container { grid-template-columns: 1fr; gap: 20px; }
+			.ref-group { padding: 30px 20px; }
+			.ref-image-wrap { height: 140px; } /* 이미지 높이 축소로 전체 길이 단축 */
 
-        .ref-container { grid-template-columns: 1fr; gap: 20px; }
-        .ref-group { padding: 30px 20px; }
-        .ref-image-wrap { height: 140px; } /* 이미지 높이 축소로 전체 길이 단축 */
+			.footer-top { flex-direction: column; margin-bottom: 40px; }
+			.footer-contact { grid-template-columns: 1fr; gap: 30px; }
+			.footer-bottom { flex-direction: column; align-items: flex-start; }
+		}
 
-        .footer-top { flex-direction: column; margin-bottom: 40px; }
-        .footer-contact { grid-template-columns: 1fr; gap: 30px; }
-        .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
+		@keyframes bounce {
+			0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+			40% {transform: translateY(-10px);}
+			60% {transform: translateY(-5px);}
+		}
 
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-        40% {transform: translateY(-10px);}
-        60% {transform: translateY(-5px);}
-    }
-
-    /* 가로 스크롤 완벽 차단용 패치 */
-    html, body {
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    
-    @media (max-width: 900px) {
-        .profile-grid, .biz-grid, .ref-container, .process-grid {
-            width: 100% !important;
-            margin: 0 !important;
-        }
-        .visual h1 {
-            word-break: keep-all; /* 제목이 너무 길어서 밀어내는 것 방지 */
-        }
-    }
-     
-</style>
-
+		/* 가로 스크롤 완벽 차단용 패치 */
+		html, body {
+			max-width: 100%;
+			overflow-x: hidden;
+		}
+		
+		@media (max-width: 900px) {
+			.profile-grid, .biz-grid, .ref-container, .process-grid {
+				width: 100% !important;
+				margin: 0 !important;
+			}
+			.visual h1 {
+				word-break: keep-all; /* 제목이 너무 길어서 밀어내는 것 방지 */
+			}
+		}
+		 
+	</style>
 </head>
-
 <body>
 
-
-
 <nav>
-
     <a href="#" class="logo">ZERO<span>TO</span>BE</a>
-
     <div class="menu">
         <a href="#about">About</a>
         <a href="#business">Business</a>
@@ -363,87 +350,49 @@
         <a href="#reference">Reference</a>
         <a href="#careers">Careers</a>
     </div>
-
 </nav>
 
-
-
 <div class="visual">
-
     <div data-aos="fade-up" data-aos-duration="1000">
-
         <h1>ZEROTOBE<br>Smart Logistics.</h1>
-
         <p>From Zero. To be.<br><strong>현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</strong></p>
-
     </div>
-
     <div class="scroll-down">SCROLL EXPLORE</div>
-
 </div>
 
-
-
 <section class="profile-section" id="about">
-
     <div class="content">
-
         <div class="profile-grid">
-
             <div class="profile-card" data-aos="fade-right">
-
                 <div class="sec-title">
-
                     <h2>Company Profile</h2>
-
                     <div class="bar"></div>
-
                 </div>
-
                 <h3>고객과 함께 성장하며<br>내일을 설계하는 파트너</h3>
-
                 <p>
-
                     우리는 작은 팀으로 시작했지만, 고객과 함께 성장하여 지금의 회사를 이루었습니다.<br>
-
                     이제 단순한 IT 지원을 넘어 <strong>고객의 비즈니스 내일을 함께 설계하는</strong> 
-
                     신뢰받는 회사 제로투비가 되겠습니다. 현장의 복잡한 프로세스를 디지털 혁신으로 최적화합니다.
-
                 </p>
 
                 <div style="font-weight: 700; color: var(--accent); display: inline-flex; align-items: center;">
-
                     <span style="width: 20px; height: 2px; background: var(--accent); margin-right: 10px;"></span>
-
                     Smart Logistics IT Partner
-
                 </div>
-
             </div>
 
             <div class="vision-container" data-aos="fade-left">
-
                 <div class="vision-item">
-
                     <strong>OUR MISSION</strong>
-
                     <p>현장의 복잡한 프로세스를 가장 명쾌한 실전형 시스템으로 구현합니다.</p>
-
                 </div>
 
                 <div class="vision-item">
-
                     <strong>OUR VISION</strong>
-
                     <p>고객과 함께 현장에서 호흡하며, 물류 IT의 살아있는 정석을 증명합니다.</p>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
 </section>
@@ -615,35 +564,28 @@
             <p style="margin-top:20px; color:var(--text-sub);">제로투비와 함께 혁신적인 물류 IT의 미래를 만들어갈 인재를 모십니다.</p>
         </div>
 
-        <div class="careers-grid">
+        <!-- 중앙 정렬을 위해 max-width와 margin을 부여했습니다 -->
+        <div class="careers-grid" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
             <!-- 공고 1 -->
             <div class="career-card" data-aos="fade-up" data-aos-delay="100">
                 <h3>
                     물류 솔루션 개발자 (WMS/WCS)
-                    <span class="career-status status-active">채용중</span>
+                    <span class="career-status status-active">상시 채용 중</span>
                 </h3>
-                <p class="career-desc">C#, .NET 기반의 WMS/WCS 솔루션 개발 및 현장 하드웨어 인터페이스 제어 연동을 담당합니다.</p>
+                <p class="career-desc">WMS/WCS 솔루션 개발 및 현장 하드웨어 인터페이스 제어 연동을 담당합니다.</p>
+				<p class="career-desc">물류 프로세스에 대한 이해가 있어, 물류 프로세스 설계가 가능하신 분을 환영합니다.</p>
+				<p class="career-desc">물류 업무 도메인을 바탕으로 커리어와 역량을 쌓아 성장하고자 하시는 분을 환영합니다.</p>
                 <div class="career-tags">
-                    <span>경력 2년 이상</span>
-                    <span>C# / .NET</span>
+                    <span>경력 3년 이상</span>
+                    <span>JAVA / Spring</span>
                     <span>MSSQL / Oracle</span>
                 </div>
                 <a href="mailto:zerotobe@://kakao.com[지원] 물류 솔루션 개발자 지원자_이름" class="btn-apply">지원하기 (이메일 제출)</a>
-            </div>
-
-            <!-- 공고 2 -->
-            <div class="career-card" data-aos="fade-up" data-aos-delay="200">
-                <h3>
-                    인재풀 등록 (상시 채용)
-                    <span class="career-status status-pool">인재풀</span>
-                </h3>
-                <p class="career-desc">현재 열린 공고 외에도 제로투비의 다양한 포지션(개발, PM, 영업)에 관심이 있는 분들의 이력서를 상시 접수합니다.</p>
-                <div class="career-tags">
-                    <span>경력/신입</span>
-                    <span>물류 IT 부문</span>
-                    <span>상시 검토</span>
-                </div>
-                <a href="mailto:zerotobe@://kakao.com[인재풀] 제로투비 상시지원_이름" class="btn-apply">이력서 등록하기</a>
+                
+                <!-- 버튼 아래 이메일 주소 표시 영역 -->
+                <p style="text-align: center; margin-top: 15px; font-size: 0.85rem; color: var(--text-sub);">
+                    이메일 접수: <a href="mailto:zerotobe@kakao.com" style="color: var(--accent); font-weight: 500; text-decoration: none;">zerotobe@kakao.com</a>
+                </p>
             </div>
         </div>
     </div>
