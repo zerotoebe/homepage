@@ -188,6 +188,19 @@
     .flow-arrow { color: var(--sub-point); font-weight: bold; font-size: 1.2rem; }
 
     .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+	
+	.careers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+	.career-card { background: var(--white); padding: 40px; border-radius: 24px; border: 1px solid #e5e7eb; transition: var(--transition); display: flex; flex-direction: column; }
+	.career-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--accent); }
+	.career-card h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 10px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+	.career-status { font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; font-weight: 600; }
+	.status-active { background: rgba(197, 160, 89, 0.1); color: var(--accent); }
+	.status-pool { background: #f3f4f6; color: var(--text-sub); }
+	.career-desc { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 25px; }
+	.career-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
+	.career-tags span { background: var(--gray-light); color: var(--text-main); font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; font-weight: 500; }
+	.btn-apply { margin-top: auto; display: inline-block; text-align: center; background: var(--primary); color: var(--white); text-decoration: none; padding: 12px 0; border-radius: 12px; font-size: 0.95rem; font-weight: 500; transition: var(--transition); }
+	.btn-apply:hover { background: var(--accent); }	
 
     /* --- Reference Section --- */
     .ref-section { background: #1a1c1e; color: var(--white); }
@@ -344,15 +357,11 @@
     <a href="#" class="logo">ZERO<span>TO</span>BE</a>
 
     <div class="menu">
-
         <a href="#about">About</a>
-
         <a href="#business">Business</a>
-
         <a href="#system">System</a>
-
         <a href="#reference">Reference</a>
-
+        <a href="#careers">Careers</a>
     </div>
 
 </nav>
@@ -442,181 +451,104 @@
 
 
 <section id="business">
-
     <div class="content">
-
         <div class="sec-title" data-aos="fade-up">
-
             <h2>Main Business</h2>
-
             <div class="bar"></div>
-
         </div>
 
         <div class="biz-grid">
-
             <div class="biz-item" data-aos="fade-up" data-aos-delay="100">
-
                 <span class="icon">01</span>
-
                 <h3>물류관리 솔루션</h3>
-
                 <p>WMS, WCS, PDA 기반 실시간 재고 관리 및 데이터 분석을 통한 물류 운영 효율 극대화</p>
-
             </div>
 
             <div class="biz-item" data-aos="fade-up" data-aos-delay="200">
-
                 <span class="icon">02</span>
-
                 <h3>유통/주문관리</h3>
-
                 <p>OMS 주문 통합 관리 시스템 및 DMS 수입유통 전산화 솔루션으로 정확한 유통 흐름 제어</p>
-
             </div>
 
             <div class="biz-item" data-aos="fade-up" data-aos-delay="300">
-
                 <span class="icon">03</span>
-
                 <h3>물류자동화</h3>
-
                 <p>ACR 로봇 연동 기술 및 스마트 자동화 설비(DAS/Sorter) 제어를 위한 맞춤형 WCS 공급</p>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 
-
 <section id="system" style="background-color: var(--gray-light);">
-
     <div class="content">
-
         <div class="sec-title" data-aos="fade-up">
-
             <h2>System Architecture</h2>
-
             <div class="bar"></div>
-
             <p style="margin-top:20px; color:var(--text-sub);">기간계 시스템 연동부터 현장 자동화 설비 제어까지, 통합 프로세스를 구축합니다.</p>
-
         </div>
-
 
 
         <div class="system-flow-card" data-aos="zoom-in">
-
             <div class="flow-grid">
-
                 <div class="flow-node">
-
                     <h4>ERP System</h4>
-
                     <span>입/출고 예정 정보</span>
-
                 </div>
 
                 <div class="flow-arrow">▶</div>
-
                 <div class="flow-node" style="padding: 20px 30px; background: var(--primary); border-radius: 15px;">
-
                     <h4 style="color: var(--point); font-size: 1.3rem;">WMS / WCS</h4>
-
                     <span style="color: var(--white); opacity: 0.8;">Smart Management</span>
-
                 </div>
 
                 <div class="flow-arrow">◀▶</div>
-
                 <div class="flow-node">
-
                     <h4>H/W Interface</h4>
-
                     <span>PLC / BCR / RFID</span>
-
                 </div>
-
             </div>
-
         </div>
-
-
 
         <div class="process-grid">
-
             <div class="vision-item" data-aos="fade-right" style="border-bottom: 4px solid var(--accent);">
-
                 <strong>INBOUND PROCESS</strong>
-
                 <p style="font-size: 1.3rem; margin-bottom: 15px; color: var(--primary);">입고 예정 및 적치 관리</p>
-
                 <ul style="list-style: none; font-size: 0.95rem; color: var(--text-main);">
-
                     <li style="margin-bottom: 10px;">• 입고 검수지시 및 검수 실적 실시간 수신</li>
-
                     <li style="margin-bottom: 10px;">• RFID 검수박스별 목적지 이동지시 제어</li>
-
                     <li style="margin-bottom: 10px;">• ACR(로봇) 연동 최적 적치지시 및 실적 관리</li>
-
                 </ul>
-
             </div>
-
-
 
             <div class="vision-item" data-aos="fade-left" style="background: var(--secondary); color: white;">
-
                 <strong style="color: var(--accent);">OUTBOUND PROCESS</strong>
-
                 <p style="font-size: 1.3rem; margin-bottom: 15px;">출고 피킹 및 분류 최적화</p>
-
                 <ul style="list-style: none; font-size: 0.95rem; opacity: 0.9;">
-
                     <li style="margin-bottom: 10px;">• 피킹지시 및 PDA 실시간 피킹 실적 수신</li>
-
                     <li style="margin-bottom: 10px;">• BCR 기반 목적지 이동 및 유형별 분류 제어</li>
-
                     <li style="margin-bottom: 10px;">• 오토라벨러 인터페이스 및 운송장 정보 송신</li>
-
                 </ul>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 
 
 <section class="ref-section" id="reference">
-
     <div class="content">
-
         <div class="sec-title" data-aos="fade-up">
-
             <h2>Major Reference</h2>
 
             <div class="bar"></div>
-
         </div>
 
         <div class="ref-container">
-
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="100">
-
                 <div class="ref-header">
-
                     <span class="badge">WMS / Automation</span>
-
                     <h3>WMS 솔루션/구축</h3>
-
                 </div>
 
                 <ul class="ref-item-list">
@@ -630,142 +562,128 @@
                 </ul>
 
                 <div class="ref-image-wrap">
-
                     <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehouse">
-
                 </div>
-
             </div>
 
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="200">
-
                 <div class="ref-header">
-
                     <span class="badge">OMS / Distribution</span>
-
                     <h3>주문/유통망 관리 시스템</h3>
-
                 </div>
 
                 <ul class="ref-item-list">
-
                     <li>이마트 24 권고발주(OMS) 시스템</li>
                     <li>한국초저온 주문통합관리 시스템 </li>					
                     <li>소프트팩 주문관리 시스템</li>
                     <li>석영브라이스톤(반도체) 유통관리 시스템</li>
                     <li>육류 기업 유통관리 시스템</li>
-
                 </ul>
 
                 <div class="ref-image-wrap">
-
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Data">
-
                 </div>
-
             </div>
 
             <div class="ref-group" data-aos="zoom-in" data-aos-delay="300">
-
                 <div class="ref-header">
-
                     <span class="badge">Solution Interface</span>
-
                     <h3>물류자동화</h3>
-
                 </div>
 
                 <ul class="ref-item-list">
-
                     <li>자동화센터 데이터통합관리/제어</li>
                     <li>AMR/ACR 로봇 적치/피킹 시뮬레이션</li>
                     <li>SMS / DAS / DPS / ACR 자동화 설비제어</li>
 					<li>RFID 연동 자동화 검수</li>
                     <li>컨베이어 라인분기(BCR) 제어</li>
-
                 </ul>
 
                 <div class="ref-image-wrap">
-
                     <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=600&q=80" alt="Robot">
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-
-<footer>
-
+<section id="careers">
     <div class="content">
+        <div class="sec-title" data-aos="fade-up">
+            <h2>Careers</h2>
+            <div class="bar"></div>
+            <p style="margin-top:20px; color:var(--text-sub);">제로투비와 함께 혁신적인 물류 IT의 미래를 만들어갈 인재를 모십니다.</p>
+        </div>
 
-        <div class="footer-top">
-
-            <div class="footer-brand">
-
-                <a href="#" class="f-logo">ZERO<span>TO</span>BE</a>
-
-                <p class="f-slogan">제로투비는 현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</p>
-
+        <div class="careers-grid">
+            <!-- 공고 1 -->
+            <div class="career-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>
+                    물류 솔루션 개발자 (WMS/WCS)
+                    <span class="career-status status-active">채용중</span>
+                </h3>
+                <p class="career-desc">C#, .NET 기반의 WMS/WCS 솔루션 개발 및 현장 하드웨어 인터페이스 제어 연동을 담당합니다.</p>
+                <div class="career-tags">
+                    <span>경력 2년 이상</span>
+                    <span>C# / .NET</span>
+                    <span>MSSQL / Oracle</span>
+                </div>
+                <a href="mailto:zerotobe@://kakao.com[지원] 물류 솔루션 개발자 지원자_이름" class="btn-apply">지원하기 (이메일 제출)</a>
             </div>
 
-            
+            <!-- 공고 2 -->
+            <div class="career-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>
+                    인재풀 등록 (상시 채용)
+                    <span class="career-status status-pool">인재풀</span>
+                </h3>
+                <p class="career-desc">현재 열린 공고 외에도 제로투비의 다양한 포지션(개발, PM, 영업)에 관심이 있는 분들의 이력서를 상시 접수합니다.</p>
+                <div class="career-tags">
+                    <span>경력/신입</span>
+                    <span>물류 IT 부문</span>
+                    <span>상시 검토</span>
+                </div>
+                <a href="mailto:zerotobe@://kakao.com[인재풀] 제로투비 상시지원_이름" class="btn-apply">이력서 등록하기</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="content">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="f-logo">ZERO<span>TO</span>BE</a>
+                <p class="f-slogan">제로투비는 현장에서 답을 찾고, 데이터로 흐름을 완성합니다.</p>
+            </div>
 
             <div class="footer-contact">
-
                 <div class="contact-item">
-
                     <strong>Contact</strong>
-
                     <p><a href="mailto:zerotobe@kakao.com">zerotobe@kakao.com</a></p>
-
-                    <p>대표이사 장원봉</p>
-
+                    <p>대표 장원봉</p>
                 </div>
 
                 <div class="contact-item">
-
                     <strong>Location</strong>
-
                     <p>주식회사 제로투비</p>
                     <p>경기도 퇴계원로 91번길 25</p>
 
                 </div>
-
             </div>
-
         </div>
-
-
 
         <div class="footer-bottom">
-
             <p class="copyright">&copy; 2026 ZEROTOBE Co., Ltd. All Rights Reserved.</p>
-
             <div class="company-info">
-
                 <span></span>
-
                 <span>Smart Logistics IT Solution</span>
-
             </div>
-
         </div>
-
     </div>
-
 </footer>
 
-
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
 
     AOS.init({
@@ -780,8 +698,5 @@
 
 </script>
 
-
-
 </body>
-
 </html>
